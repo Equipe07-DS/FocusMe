@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-color: #F6EDE8;
+  width: screen;
+  height: screen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .App-logo {
@@ -35,4 +42,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Quadro-branco {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: min-content;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+}
+
+.Quadro-cronograma{
+  background-color: #F6EDE8;
+  width: 65vw;
+  height: 67vh;
+  border-radius: 15px;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  display: flex;
+  align-items: center;
+  
+
+
+}
+
+.Texto-cronograma {
+  max-height: 60vh;
+  max-width: 65vw;
+  overflow-y: scroll;
+  font-size:xx-small;
+  margin: 0px;
+}
+
+.Título {
+  font-size: medium;
+  color: #004E7E;
+  margin: 0px;
+  margin-top: 2vh;
 }
