@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
 
 // Usando `texto` (texto entre crases) para manter formatação
-let output_ia = `Cronograma de Estudos - Semana Intensiva de Revisão para Provas
+const output_ia = `Cronograma de Estudos - Semana Intensiva de Revisão para Provas
 
 Para alcançar um bom desempenho nas provas finais, é fundamental seguir um cronograma bem estruturado. A seguir, está um plano de estudos para uma semana de revisão intensiva, com foco nas principais disciplinas:
 
@@ -41,11 +41,6 @@ Sexta-feira
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {App (output_ia)}
+      <App output_ia = {output_ia}/>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
