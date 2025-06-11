@@ -1,24 +1,17 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css';
+import Novo from './Novo';
+import VerCronograma from './VerCronograma';
 
-
-
-function App(cronograma_output) {
-  return (
-
-    <div className="Quadro-branco">
-      
-      <h1 className='Título'>Seu cronograma de estudos personalizado</h1>
-
-      <div className='Quadro-cronograma'>
-
-        {/* Esse pre faz com que o texto seja apresentado na formatação original dele */}
-        <pre>
-          <p className='Texto-cronograma'>{cronograma_output}</p>
-        </pre>
-        
-      </div>
-    </div>
-  );
+function App({output_ia}) {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Novo />}></Route>
+                <Route path='/vercronograma' element={<VerCronograma cronograma_output = {output_ia}></VerCronograma>}></Route>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App;
