@@ -22,11 +22,11 @@ Com relação às branches, é interessante e uma boa prática manter a branch m
 
 Acerca das boas práticas na revisão do código, primeiramente é necessário analisar se foi cumprido o requisito o qual ele pretendia atingir. Se isso foi alcançado então deve-se prestar atenção se houve uma construção simples, na medida do possível, e compreensível, no caso em que todas essas metas tenham sido atingidas o Pull Request deve ser aceito, caso contrário, por algum motivo o código não está de acordo com essas regras, então deve-se contatar o responsável pelo request a fim de reajustar as partes incoerentes. A revisão de código terá como responsáveis prioritários os líderes da área de desenvolvimento, podendo ser ajudados por qualquer outro membro além do qual escreveu o código.
 
-4. **Como configurar o projeto localmente (ex.: dependências, comandos úteis)?**
+## **Como configurar o projeto localmente (ex.: dependências, comandos úteis)?**
 
 1. **Pré-requisitos: ter instalado na máquina o [node.js](http://node.js) (pode ser baixado no site [https://nodejs.org/en](https://nodejs.org/en)), o git (pode ser baixado no site [https://git-scm.com/downloads](https://git-scm.com/downloads)) e o react (pode ser baixado e no site [https://react.dev/](https://react.dev/) ) e um editor de código.**  
-2. **clone o repositório com o comando: “git clone [https://github.com/Equipe07-DS/FocusMe.git](https://github.com/Equipe07-DS/FocusMe.git)”**  
-3. **pelo terminal entre na pasta do backend e instale as dependências do backend pelo comando  “pip install \-r requirements.txt”**   
-4. **em seguida use o comando “uvicorn main:app  \--reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:5173/redoc](http://localhost:8000/redoc)”)**  
+2. **Clone o repositório com o comando: “git clone [https://github.com/Equipe07-DS/FocusMe.git](https://github.com/Equipe07-DS/FocusMe.git)”**  
+3. **Pelo terminal entre na pasta do backend e instale as dependências do backend pelo comando  “pip install \-r requirements.txt”**   
+4. **Em seguida, na pasta app, use o comando “uvicorn main:app  \--reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:8000/redoc](http://localhost:8000/redoc)”)**  
 5. **Abra outro terminal e entre na pasta do frontend e use o comando “npm install” em seguida “npm start”.** 
 
