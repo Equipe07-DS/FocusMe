@@ -13,7 +13,7 @@ def gerar_resposta(messages):
                 "HTTP-Referer": "http://localhost",
                 "X-Title": "Assistente de Estudo",
             },
-            model="mistralai/mistral-7b-instruct:free",
+            model="google/gemini-2.0-flash-001",
             messages=messages,
             max_tokens=1500
         )
