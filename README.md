@@ -21,8 +21,8 @@ O projeto é uma aplicação com integração de API para inteligencia artificia
 
 ### **Como Configurar o Projeto Localmente**
 
-1. **Pré-requisitos: ter instalado na máquina o [node.js](http://node.js) (pode ser baixado no site [https://nodejs.org/en](https://nodejs.org/en)), o git (pode ser baixado no site [https://git-scm.com/downloads](https://git-scm.com/downloads)) e o react (pode ser baixado e no site [https://react.dev/](https://react.dev/) ) e um editor de código.**  
-2. **Clone o repositório com o comando: “git clone [https://github.com/Equipe07-DS/FocusMe.git](https://github.com/Equipe07-DS/FocusMe.git)”**  
-3. **Pelo terminal entre na pasta do backend e instale as dependências do backend pelo comando  “pip install \-r requirements.txt”**   
-4. **Em seguida, na pasta app, use o comando “uvicorn main:app  \--reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:8000/redoc](http://localhost:8000/redoc)”)**  
-5. **Abra outro terminal e entre na pasta do frontend e use o comando “npm install” em seguida “npm start”.** 
+1. Pré-requisitos: ter instalado na máquina o [node.js](http://node.js) (pode ser baixado no site [https://nodejs.org/en](https://nodejs.org/en)), o git (pode ser baixado no site [https://git-scm.com/downloads](https://git-scm.com/downloads)) e o react (pode ser baixado e no site [https://react.dev/](https://react.dev/) ) e um editor de código
+2. Clone o repositório com o comando: “git clone [https://github.com/Equipe07-DS/FocusMe.git](https://github.com/Equipe07-DS/FocusMe.git)”
+3. Pelo terminal entre na pasta do backend e instale as dependências do backend pelo comando  “pip install \-r requirements.txt”
+4. Em seguida, na pasta app, use o comando “uvicorn main:app  \--reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:8000/redoc](http://localhost:8000/redoc)”)
+5. Abra outro terminal e entre na pasta do frontend e use o comando “npm install” em seguida “npm start”
