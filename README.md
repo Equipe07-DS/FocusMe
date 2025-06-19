@@ -2,11 +2,11 @@
 
 # FocusMe
 Projeto da disciplina de Desenvolvimento de Software (2025.1) do Centro de Informática da UFPE
-### Contexto:
+
+### Contexto
 O projeto é uma aplicação com integração de API para inteligencia artificial generativa, e a proposta central é solucionar o problema de organização da rotina de estudos para pessoas com rotinas apertadas.
 
-### Equipe:
-
+### Equipe
 * Ádson Viana \<aav>
 * Arthur Fernandes \<afol>
 * Gabriel Rio \<grtc>
@@ -15,7 +15,7 @@ O projeto é uma aplicação com integração de API para inteligencia artificia
 * Maria Amorim \<maca>
 * Vitória das Dores \<vdsn>
 
-### Sobre a aplicação
+### Sobre a Aplicação
 
 (em progresso)
 
