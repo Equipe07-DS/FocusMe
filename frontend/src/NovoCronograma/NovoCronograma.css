@@ -1,0 +1,54 @@
+.Novo {
+  text-align: center;
+  background-color: #F6EDE8;
+  width: screen;
+  height: screen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  justify-items: center;
+
+}
+
+.Quadro-b {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 90vh;
+  justify-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+  overflow-y:auto;
+  display: flexbox;
+  align-items: center;
+  overflow-y:auto;
+  display: flexbox;
+  align-items: center;
+}
+
+p {
+ font-size: small;
+}
+
+.Tit {
+  font-size: bold;
+  color: #004E7E;
+}
+
+.Caixa-titulo {
+  height: min-content;
+}
+
+.Formulario {
+  width: 57vw;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
+}
+
+h2 {
+  width: 56vw;
+  font-size: 17px;
+  font-weight: 600;
+  color: #5A9AC4;
+}

@@ -1,0 +1,72 @@
+input {
+    border-radius: 7px;
+    background-color: #F6EDE8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea {
+    border-radius: 7px;
+    background-color: #F6EDE8;
+}
+
+label {
+    color:#004E7E;
+    font-weight: 650;
+}
+form {
+    display: grid;
+    row-gap: 3vh;
+    grid-template-columns: repeat(1, 1fr);
+}
+.Caixa-input{
+    Display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    height: 7vh;
+}
+
+.Caixa-Domingo {
+    width: 26vw;
+}
+
+.Caixa-botoes {
+    justify-items: center;
+    Display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.Grid-dias {
+    width: 57vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5vw;
+    row-gap: 1vh;
+}
+.Dias {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    row-gap: 1vh;
+}
+
+.Caixa {
+    width: 57vw;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+}
+
+.botao {
+    background-color: #ED5522;
+    color: #FFFBF5;
+    border-radius: 17px;
+    border: none;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+    width: 17vw;
+    height: 7vh;
+}
+
+.botao:hover {
+    background-color:  #F48763;
+}
