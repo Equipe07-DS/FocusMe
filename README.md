@@ -1,4 +1,4 @@
-<img src="assets/logoFocusMe.png" height="400px">
+<img src="assets/FocusMe-Logo.png" height="400px">
 
 # **FocusMe**
 Projeto da disciplina de Desenvolvimento de Software (2025.1) do Centro de Informática da UFPE
