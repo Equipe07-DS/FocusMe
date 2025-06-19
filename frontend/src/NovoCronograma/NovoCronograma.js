@@ -1,5 +1,5 @@
-import FazerFormulario from './componentes/FazerFormulario';
-import './Novo.css';
+import FazerFormulario from '../componentes/FormsNovoCronograma/FormsNovoCronograma';
+import './NovoCronograma.css';
 
 function Novo() {
   return (

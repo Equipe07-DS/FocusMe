@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Novo from './Novo';
-import VerCronograma from './VerCronograma';
+import Novo from './NovoCronograma/NovoCronograma';
+import VerCronograma from './VerCronograma/VerCronograma';
 
 function App() {
     return (
