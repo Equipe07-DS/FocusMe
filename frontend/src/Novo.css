@@ -1,0 +1,44 @@
+.Novo {
+  text-align: center;
+  background-color: #F6EDE8;
+  width: screen;
+  height: screen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.Quadro-b {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 90vh;
+  justify-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+  overflow-y: scroll;
+  display: flexbox;  
+}
+
+.Informacoes-dias {
+  width: 49vw;
+  direction: grid;
+  row-gap: 0px;
+}
+
+p {
+ font-size: small;
+}
+
+
+
+.Tit {
+  font-size: bold;
+  color: #004E7E;
+
+}
+
+.Caixa-titulo {
+  height: min-content;
+  margin-bottom: 7vh;
+}

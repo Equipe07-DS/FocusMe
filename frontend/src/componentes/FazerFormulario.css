@@ -1,0 +1,59 @@
+.formulario {
+    Display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 22vw;
+    height: 7vh;
+} 
+
+input {
+    border-radius: 7px;
+}
+
+.Grid-dias {
+    width: 49vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5vh;
+}
+.dias {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+}
+
+.Caixa {
+    width: 49vw;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    row-gap: 5vh;
+}
+
+.Informacoes-dias {
+    color: black;
+    display: flexbox;
+    font-size: medium;
+    font-weight:500;
+}
+
+.Exemplo-dias {
+    color: gray;
+}
+.Outras-Infos {
+    width: 49vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5vh;
+}
+
+.botao {
+    background-color: blue;
+    color: bisque;
+    border-radius: 17px;
+    border: none;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+    width: 17vw;
+    height: 7vh;
+}
