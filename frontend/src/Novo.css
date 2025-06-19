@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-items: center;
 
 }
 
@@ -16,29 +17,34 @@
   justify-items: center;
   border-radius: 15px;
   margin-top: 2vh;
-  overflow-y: scroll;
-  display: flexbox;  
-}
-
-.Informacoes-dias {
-  width: 49vw;
-  direction: grid;
-  row-gap: 0px;
+  overflow-y:auto;
+  display: flexbox;
+  align-items: center;
 }
 
 p {
  font-size: small;
 }
 
-
-
 .Tit {
   font-size: bold;
   color: #004E7E;
-
 }
 
 .Caixa-titulo {
   height: min-content;
-  margin-bottom: 7vh;
+}
+
+.Formulario {
+  width: 57vw;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
+}
+
+h2 {
+  width: 56vw;
+  font-size: 17px;
+  font-weight: 600;
+  color: #5A9AC4;
 }
