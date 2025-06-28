@@ -20,7 +20,7 @@ export default function TelaLogin(){
       {/* Div geral campos de resposta, fundo branco*/}
       <div className=" bg-white w-7/12 h-full rounded-l-3xl px-20 py-14 flex-col">
         
-        <h1 className="flex justify-center text-[#004E7E] font-bold text-4xl mb-16 mt-8">Bem-vindo de volta!</h1>
+        <h1 className="flex justify-center text-[#004E7E] font-bold text-4xl mb-7 mt-4">Bem-vindo de volta!</h1>
         
 
 
