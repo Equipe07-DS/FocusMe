@@ -47,7 +47,7 @@ const FormsLogin = () => {
         {/* Div dos componentes do email */}
         <div className="Inputs-Login w-full flex-col mb-2">
         
-          <label>E-mail:</label>
+          <label>E-mail</label>
           <input placeholder="Digite aqui"{...register('email')} />
         
         </div>
@@ -56,7 +56,7 @@ const FormsLogin = () => {
         {/* Div dos componentes da senha */}
         <div className="Inputs-Login w-full flex-col mb-14">
 
-          <label>Senha:</label>
+          <label>Senha</label>
           <input type="password" placeholder="Digite aqui"{...register('password')} />
         </div>
 
