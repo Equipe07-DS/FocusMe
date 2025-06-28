@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import './FormsLogin.css';
+import styles from './FormsLogin.module.css';
 
 // Falta ajustar a integração ainda, apenas está com o exemplo da integração de outra tela só para não dar erro
 const FormsLogin = () => {
@@ -42,28 +42,28 @@ const FormsLogin = () => {
   return (
     <div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className={`${styles.FormLogin}`}>
 
         {/* Div dos componentes do email */}
-        <div className="Inputs-Login w-full flex flex-col mb-2">
+        <div className={`${styles.CaixaInputsLogin} w-full flex flex-col mb-2`}>
         
-          <label>E-mail</label>
-          <input placeholder="Digite aqui"{...register('email')} />
+          <label className={`${styles.LabelLogin}`}>E-mail</label>
+          <input className={`${styles.InputsLogin}`} placeholder="Digite aqui"{...register('email')} />
         
         </div>
 
 
         {/* Div dos componentes da senha */}
-        <div className="Inputs-Login w-full flex flex-col mb-14">
+        <div className={`${styles.CaixaInputsLogin}w-full flex flex-col mb-14`}>
 
-          <label>Senha</label>
-          <input type="password" placeholder="Digite aqui"{...register('password')} />
+          <label className={`${styles.LabelLogin}`} >Senha</label>
+          <input className={`${styles.InputsLogin}`} type="password" placeholder="Digite aqui"{...register('password')} />
         </div>
 
 
         <div className="flex flex-col gap-1 items-center">
 
-          <button className="botao" type="submit">Entrar</button>
+          <button className={`${styles.Botao}`} type="submit">Entrar</button>
 
           <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleVerCronograma}>Primeira vez por aqui? Faça seu cadastro</button>
         

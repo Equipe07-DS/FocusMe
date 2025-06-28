@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-form {
+.FormLogin {
   display: grid;
   grid-template-columns: 1;
 
 }
 
-label {
+.LabelLogin {
   color: black;
   opacity: 0.90;
   font-weight:600;
@@ -17,7 +17,7 @@ label {
 }
 
 
-input {
+.InputsLogin {
   background-color: #F2EFEA;
   padding: 1vh;
   padding-left: 2vh;
@@ -26,14 +26,24 @@ input {
   border-radius: 1vh;
   outline: none;
 }
-.Inputs-Login {
+.CaixaInputsLogin {
   display: flex;
   
 }
 
-.botao {
+.Botao {
   width: 30vw;
   border-radius: 10vh;
   transition: all 0.25s;
+  background-color: #ED5522;
+  color: #FFFBF5;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: bold;
+  height: 7vh;
 }
 
+.Botao:hover {
+  background-color:  #F48763;
+}
