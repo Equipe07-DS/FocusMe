@@ -25,20 +25,7 @@ export default function TelaLogin(){
 
 
         <FormsLogin/>
-        {/* Div dos componentes do email
-        <div className="w-full">
-        
-          <h3>E-mail:</h3>
 
-        </div>
-
-
-        Div dos componentes da senha
-        <div className="w-full">
-
-          <h3>Senha:</h3>
-
-        </div> */}
 
       </div>
 
