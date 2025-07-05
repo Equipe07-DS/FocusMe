@@ -3,6 +3,7 @@ import './App.css';
 import Novo from './NovoCronograma/NovoCronograma';
 import VerCronograma from './VerCronograma/VerCronograma';
 import TelaCadastro from "./TelaCadastro/TelaCadastro";
+import TelaLogin from "./TelaLogin/TelaLogin";
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
                 <Route path='/' element={<Novo />} />
                 <Route path='/vercronograma' element={<VerCronograma />} />
                 <Route path='/TelaCadastro' element={<TelaCadastro />} />
+                <Route path='/TelaLogin' element={<TelaLogin />} />
             </Routes>
         </BrowserRouter>
     );

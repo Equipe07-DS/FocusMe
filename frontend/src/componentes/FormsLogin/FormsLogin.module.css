@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.FormLogin {
+  display: grid;
+  grid-template-columns: 1;
+
+}
+
+.LabelLogin {
+  color: black;
+  opacity: 0.90;
+  font-weight:600;
+  margin-bottom: 1vh;
+  
+}
+
+
+.InputsLogin {
+  background-color: #F2EFEA;
+  padding: 1vh;
+  padding-left: 2vh;
+  width: 41vw;
+  box-shadow: 0px 4px 5px 1px rgb(206, 206, 206);
+  border-radius: 1vh;
+  outline: none;
+}
+.CaixaInputsLogin {
+  display: flex;
+  
+}
+
+.Botao {
+  width: 30vw;
+  border-radius: 10vh;
+  transition: all 0.25s;
+  background-color: #ED5522;
+  color: #FFFBF5;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: bold;
+  height: 7vh;
+}
+
+.Botao:hover {
+  background-color:  #F48763;
+}
