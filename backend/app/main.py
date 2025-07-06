@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+from math import inf
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from gerar import gerar_resposta
@@ -26,6 +27,12 @@ class EstudoInput(BaseModel):
     disciplinas: str
     observacoes: str
 
+class UserInfo(BaseModel):
+    nome: str
+    email: str
+    senha: str
+    confirmacao: str
+
 @app.post("/gerar-cronograma")
 def gerar_cronograma(estudo: EstudoInput):
     mensagem_inicial = f"""
@@ -52,3 +59,16 @@ def gerar_cronograma(estudo: EstudoInput):
     messages = [{"role": "user", "content": mensagem_inicial}]
     resposta = gerar_resposta(messages)
     return {"cronograma": resposta}
+
+@app.post("/cadastro")
+def cadastro(info: UserInfo):
+    nome = info.nome
+    email = info.email
+    senha = info.senha
+    confirmacao = info.confirmacao
+
+    if senha != confirmacao:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Senhas Diferentes")
+    else:
+        #Handle Infos...
+        return {"email": email, "mensagem": "Cadastro bem-sucedido"}

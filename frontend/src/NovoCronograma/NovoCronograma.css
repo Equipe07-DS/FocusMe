@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .Novo {
   text-align: center;
   background-color: #F6EDE8;
