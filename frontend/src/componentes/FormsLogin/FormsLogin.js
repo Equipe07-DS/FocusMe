@@ -31,12 +31,13 @@ const FormsLogin = () => {
     }
   };
 
-  const handleVerCronograma = () => {
-    if (cronograma) {
-      navigate('/vercronograma', { state: { cronograma_output: cronograma } });
-    } else {
-      alert('Por favor, gere um cronograma primeiro.');
-      }
+  //Deve ir para a tela inicial, mas ainda não está implementada
+  const handleLogin = () => {
+    navigate('/novocronograma');
+  };
+
+  const handleFazerCadastro = () => {
+    navigate('/TelaCadastro')
   };
 
   return (
@@ -63,9 +64,9 @@ const FormsLogin = () => {
 
         <div className="flex flex-col gap-1 items-center">
 
-          <button className={`${styles.Botao}`} type="submit">Entrar</button>
+          <button className={`${styles.Botao}`} onClick={handleLogin} type="submit">Entrar</button>
 
-          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleVerCronograma}>Primeira vez por aqui? Faça seu cadastro</button>
+          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleFazerCadastro}>Primeira vez por aqui? Faça seu cadastro</button>
         
         </div>
 
