@@ -31,14 +31,14 @@ const FormsCadastro = () => {
     }
   };
 
-  const handleVerCronograma = () => {
-    if (cronograma) {
-      navigate('/vercronograma', { state: { cronograma_output: cronograma } });
-    } else {
-      alert('Por favor, gere um cronograma primeiro.');
-      }
+  const handleCadastrar = () => {
+    navigate('/novocronograma');
   };
 
+  const handleFazerLogin = () => {
+    navigate('/TelaLogin');
+  };
+  
   return (
     <div>
 
@@ -75,9 +75,9 @@ const FormsCadastro = () => {
 
         <div className="flex flex-col gap-1 items-center">
 
-          <button className={`${styles.Botao}`} type="submit">Cadastrar</button>
+          <button className={`${styles.Botao}`} onClick={handleCadastrar} type="submit">Cadastrar</button>
 
-          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleVerCronograma}>Já possui uma conta? Faça login agora</button>
+          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleFazerLogin}>Já possui uma conta? Faça login agora</button>
         
         </div>
 
