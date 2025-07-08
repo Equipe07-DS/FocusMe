@@ -3,23 +3,23 @@ import styles from './Barra.module.css';
 
 
 const Barra = () => {
-  return (
-        <nav>
+    return (
+        <nav className={`${styles.Barra}`}>
             <div>
-                <button>
-                    <img src="/Logo-fundo-transparente.png" alt="Logo do FocusMe em fundo transparente"/>
+                <button className={`${styles.botao_logo}`} onClick={handleLogo}>
+                    <img src="/Logo-fundo-transparente.png" alt="Logo do FocusMe em fundo transparente" className={`${styles.logo}`}/>
                 </button>
                 
             </div>
-            <ul>
-                <li>
-                    <a href="/inicio">Inicio</a>
+            <ul className="flex flex-row gap-10 pointer">
+                <li className={`${styles.caixa_botoes}`}>
+                    <a href="/inicio" className={`${styles.texto_botoes}`}>Inicio</a>
                 </li>
-                <li>
-                    <a href="/novocronograma">Cronograma</a>
+                <li className={`${styles.caixa_botoes}`}>
+                    <a href="/novocronograma" className={`${styles.texto_botoes}`}>Cronograma</a>
                 </li>
-                <li><a href="">Chat</a></li>
-                <li><a href="">Perfil</a></li>
+                <li className={`${styles.caixa_botoes}`}><a href="" className={`${styles.texto_botoes}`}>Chat</a></li>
+                <li className={`${styles.caixa_botoes}`}><a href="" className={`${styles.texto_botoes}`}>Perfil</a></li>
             </ul>
         </nav>
     )
