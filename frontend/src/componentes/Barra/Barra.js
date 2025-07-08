@@ -3,6 +3,11 @@ import styles from './Barra.module.css';
 
 
 const Barra = () => {
+    const navigate = useNavigate();
+    const handleLogo = () => {
+        navigate('/TelaLogin');
+    };
+    
     return (
         <nav className={`${styles.Barra}`}>
             <div>
