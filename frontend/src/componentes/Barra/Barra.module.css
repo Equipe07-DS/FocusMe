@@ -30,3 +30,25 @@
     background-color:#196594;
     border-radius: 12px;
 }
+
+.texto_botoes {
+    padding: 1vw;
+    color: #F6EDE8;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.texto_botoes:hover{
+    color: #FFC23D
+}
+
+.caixa_botoes {
+    height: 4vh;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 12px;
+}
+
+.caixa_botoes:hover{
+    background-color:#196594;
+}
