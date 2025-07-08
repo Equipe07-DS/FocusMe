@@ -21,3 +21,12 @@
     width: 10vw;
     height: 4vh;
 }
+
+.botao_logo {
+    padding: 1vh;
+}
+
+.botao_logo:hover {
+    background-color:#196594;
+    border-radius: 12px;
+}
