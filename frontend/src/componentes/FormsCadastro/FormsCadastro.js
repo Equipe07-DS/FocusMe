@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from './FormsCadastro.module.css';
 
-// Falta ajustar a integração ainda, apenas está com o exemplo da integração de outra tela só para não dar erro
 const FormsCadastro = () => {
 
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const [cronograma, setCronograma] = useState(null);
+  const [cadastro, setcadastro] = useState(null);
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:8000/gerar-cronograma", {
+      const response = await fetch("http://localhost:8000/cadastro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,17 +21,13 @@ const FormsCadastro = () => {
 
       if (response.ok) {
         const respostaApi = await response.json();
-        setCronograma(respostaApi.cronograma); 
+        setcadastro(respostaApi.cadastro); 
       } else {
         console.error('Erro ao enviar dados para o backend');
       }
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
-  };
-
-  const handleCadastrar = () => {
-    navigate('/novocronograma');
   };
 
   const handleFazerLogin = () => {
@@ -47,7 +42,7 @@ const FormsCadastro = () => {
         <div className="flex flex-col">
         
           <label className={`${styles.LabelCadastro}`} >Nome</label>
-          <input className={`${styles.InputsCadastro}`}  placeholder="Digite aqui"{...register('name')} />
+          <input className={`${styles.InputsCadastro}`}  placeholder="Digite aqui"{...register('nome')} />
         
         </div>
 
@@ -62,20 +57,20 @@ const FormsCadastro = () => {
         <div className=" flex flex-col">
 
           <label className={`${styles.LabelCadastro}`}>Senha</label>
-          <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Digite aqui"{...register('password')} />
+          <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Digite aqui"{...register('senha')} />
 
         </div>
 
         <div className=" flex flex-col mb-4">
 
           <label className={`${styles.LabelCadastro}`}>Confirme sua senha</label>
-          <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Digite aqui"{...register('password')} />
+          <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Digite aqui"{...register('confirmacao')} />
 
         </div>
 
         <div className="flex flex-col gap-1 items-center">
 
-          <button className={`${styles.Botao}`} onClick={handleCadastrar} type="submit">Cadastrar</button>
+          <button className={`${styles.Botao}`} type="submit">Cadastrar</button>
 
           <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleFazerLogin}>Já possui uma conta? Faça login agora</button>
         

@@ -4,6 +4,13 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from gerar import gerar_resposta
 import datetime
+from fastapi import FastAPI, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from database.models import User
+from database.models import User  
+from database.schemas import UserSchema  
+from database.database import Base, engine, get_session  
+
 
 app = FastAPI()
 
@@ -60,15 +67,30 @@ def gerar_cronograma(estudo: EstudoInput):
     resposta = gerar_resposta(messages)
     return {"cronograma": resposta}
 
-@app.post("/cadastro")
-def cadastro(info: UserInfo):
-    nome = info.nome
-    email = info.email
-    senha = info.senha
-    confirmacao = info.confirmacao
 
-    if senha != confirmacao:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Senhas Diferentes")
-    else:
-        #Handle Infos...
-        return {"email": email, "mensagem": "Cadastro bem-sucedido"}
+Base.metadata.create_all(bind=engine)
+
+@app.post("/cadastro")
+def cadastro(info: UserInfo, db: Session = Depends(get_session)):
+    if info.senha != info.confirmacao:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Senhas diferentes")
+
+    user_email = db.query(User).filter(User.email == info.email).first()
+    if user_email:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email já cadastrado")
+
+    user_nome = db.query(User).filter(User.nome == info.nome).first()
+    if user_nome:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Nome já cadastrado")
+
+    novo_usuario = User(
+        nome=info.nome,
+        email=info.email,
+        senha=info.senha
+    )
+
+    db.add(novo_usuario)
+    db.commit()
+    db.refresh(novo_usuario)
+
+    return {"email": novo_usuario.email, "mensagem": "Cadastro bem-sucedido"}
