@@ -12,7 +12,7 @@ O projeto é uma aplicação com integração de API para inteligencia artificia
 * Gabriel Rio \<grtc>
 * Juan Lucas \<jlcm>
 * Maria Amorim \<maca>
-* Raul Victor Alves da Silva \<rvas>
+* Raul Silva \<rvas>
 
 ### **Sobre a Aplicação**
 
