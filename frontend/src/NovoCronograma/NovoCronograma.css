@@ -2,57 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-.Novo {
-  text-align: center;
-  background-color: #F6EDE8;
-  width: screen;
-  height: screen;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-  justify-items: center;
-
+html, body, #root {
+  background-color: #5A9AC4;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.Quadro-b {
-  background-color: #FFFCF7;
-  width: 80vw;
-  height: 90vh;
-  justify-items: center;
-  border-radius: 15px;
-  margin-top: 2vh;
-  overflow-y:auto;
-  display: flexbox;
+
+.Novo {
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  overflow-y:auto;
-  display: flexbox;
-  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
 }
 
 p {
- font-size: small;
+  font-size: small;
 }
 
 .Tit {
-  font-size: bold;
+  font-weight: bold;
   color: #004E7E;
 }
 
 .Caixa-titulo {
-  height: min-content;
+  margin-bottom: 1rem;
 }
 
 .Formulario {
-  width: 57vw;
+  width: 80%;
+  max-width: 1000px;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
   justify-items: center;
 }
 
 h2 {
-  width: 56vw;
   font-size: 17px;
   font-weight: 600;
   color: #5A9AC4;
+  text-align: center;
 }
