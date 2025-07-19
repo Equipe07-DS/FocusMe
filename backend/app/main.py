@@ -40,6 +40,11 @@ class UserInfo(BaseModel):
     senha: str
     confirmacao: str
 
+# Chat
+class ChatInput(BaseModel):
+    mensagem: str
+    # historico
+
 @app.post("/gerar-cronograma")
 def gerar_cronograma(estudo: EstudoInput):
     mensagem_inicial = f"""
@@ -94,3 +99,11 @@ def cadastro(info: UserInfo, db: Session = Depends(get_session)):
     db.refresh(novo_usuario)
 
     return {"email": novo_usuario.email, "mensagem": "Cadastro bem-sucedido"}
+
+@app.post("/chat")
+def conversar(chat_input: ChatInput):
+    messages = [{"role": "user", "content": chat_input.mensagem}]
+
+    resposta_ia = gerar_resposta(messages)
+
+    return {"resposta": resposta_ia}
