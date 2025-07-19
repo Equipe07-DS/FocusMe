@@ -11,9 +11,8 @@ O projeto é uma aplicação com integração de API para inteligencia artificia
 * Arthur Fernandes \<afol>
 * Gabriel Rio \<grtc>
 * Juan Lucas \<jlcm>
-* Luiz Veloso \<lmvs>
 * Maria Amorim \<maca>
-* Vitória das Dores \<vdsn>
+* Raul Victor Alves da Silva \<rvas>
 
 ### **Sobre a Aplicação**
 
