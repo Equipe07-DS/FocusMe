@@ -64,9 +64,9 @@ const FormsLogin = () => {
 
         <div className="flex flex-col gap-1 items-center">
 
-          <button className={`${styles.Botao}`} onClick={handleLogin} type="submit">Entrar</button>
+          <button className={`${styles.Botao}`} data-testid='Entrar' onClick={handleLogin} type="submit">Entrar</button>
 
-          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleFazerCadastro}>Primeira vez por aqui? Faça seu cadastro</button>
+          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" data-testid='FazerCadastro' onClick={handleFazerCadastro}>Primeira vez por aqui? Faça seu cadastro</button>
         
         </div>
 
