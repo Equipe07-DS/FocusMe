@@ -70,9 +70,11 @@ const FormsCadastro = () => {
 
         <div className="flex flex-col gap-1 items-center">
 
+
           <button className={`${styles.Botao}`} type="submit">Cadastrar</button>
 
-          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" onClick={handleFazerLogin}>Já possui uma conta? Faça login agora</button>
+
+          <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" data-testid='Fazerlogin' onClick={handleFazerLogin}>Já possui uma conta? Faça login agora</button>
         
         </div>
 
