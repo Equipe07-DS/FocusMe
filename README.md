@@ -16,7 +16,8 @@ O projeto é uma aplicação com integração de API para inteligencia artificia
 
 ### **Sobre a Aplicação**
 
-O Focus.Me é um software que auxilia na organização da sua rotina de estudos com o auxílio de inteligência artificial para ajustar os melhores horários de estudos, tudo isso de maneira personalizada levando em consideração a sua rotina, disponibilidade, matérias e dificuldades. E o melhor de tudo isso é a possibilidade que o Focus.Me tem de atualizar o cronograma da sua semana em tempo real, basta você enviar uma mensagem para o nosso assistente virtual, o Fábio! Entre no chat da aplicação e informe as alterações necessárias para continuar com o seu cronograma focado, funcional e atualizado para você!
+O FocusMe é um software que auxilia na organização da sua rotina de estudos com o auxílio de inteligência artificial para ajustar os melhores horários de estudos, tudo isso de maneira personalizada levando em consideração a sua rotina, disponibilidade, matérias e dificuldades. E o melhor de tudo isso é a possibilidade que o FocusMe tem de atualizar o cronograma da sua semana em tempo real, basta você enviar uma mensagem para o nosso assistente virtual, o Fábio! Entre no chat da aplicação e informe as alterações necessárias para continuar com o seu cronograma focado, funcional e atualizado para você!
+
 ### **Como Configurar o Projeto Localmente**
 
 1. Pré-requisitos: ter instalado na máquina o [node.js](http://node.js) (pode ser baixado no site [https://nodejs.org/en](https://nodejs.org/en)), o git (pode ser baixado no site [https://git-scm.com/downloads](https://git-scm.com/downloads)) e o react (pode ser baixado e no site [https://react.dev/](https://react.dev/) ) e um editor de código
