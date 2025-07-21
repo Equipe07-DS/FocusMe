@@ -23,5 +23,6 @@ O FocusMe é um software que auxilia na organização da sua rotina de estudos c
 1. Pré-requisitos: ter instalado na máquina o [node.js](http://node.js) (pode ser baixado no site [https://nodejs.org/en](https://nodejs.org/en)), o git (pode ser baixado no site [https://git-scm.com/downloads](https://git-scm.com/downloads)) e o react (pode ser baixado e no site [https://react.dev/](https://react.dev/) ) e um editor de código
 2. Clone o repositório com o comando: “git clone [https://github.com/Equipe07-DS/FocusMe.git](https://github.com/Equipe07-DS/FocusMe.git)”
 3. Pelo terminal entre na pasta do backend e instale as dependências do backend pelo comando  “pip install \-r requirements.txt”
-4. Em seguida, entre na pasta app e use o comando “uvicorn main:app  \--reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:8000/redoc](http://localhost:8000/redoc)”)
-5. Abra outro terminal e entre na pasta do frontend e use o comando “npm install” em seguida “npm start”
+4. Ainda na pasta do backend, navegue para a pasta "app" e acesse o arquivo ".env". É necessário ter a sua própria API key de uma LLM. Com a key em mãos, atualize o arquivo ".env", substituindo a string da variável "API_KEY" pela sua key de API de LLM. 
+5. Em seguida, entre na pasta app e use o comando “python -m uvicorn main:app --reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:8000/redoc](http://localhost:8000/redoc)”)
+6. Abra outro terminal do tipo CMD e entre na pasta do frontend e use o comando “npm install” em seguida “npm start”
