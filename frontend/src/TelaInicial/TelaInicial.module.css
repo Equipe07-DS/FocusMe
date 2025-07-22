@@ -1,1 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+
+.Quadro {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: min-content;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+}
