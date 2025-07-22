@@ -6,9 +6,11 @@ import { useState } from "react";
 const FazerFormulario = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const [cronograma, setCronograma] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onSubmit = async (data) => {
+        setIsLoading(true);
+
         try {
             const response = await fetch("http://localhost:8000/gerar-cronograma", {
                 method: "POST",
@@ -20,20 +22,23 @@ const FazerFormulario = () => {
 
             if (response.ok) {
                 const respostaApi = await response.json();
-                setCronograma(respostaApi.cronograma); 
+                
+                navigate('/chat', { 
+                    state: { 
+                        prompt: data,
+                        cronogramaGerado: respostaApi.cronograma
+                    } 
+                });
+
             } else {
                 console.error('Erro ao enviar dados para o backend');
+                alert('Houve um erro ao gerar o cronograma. Tente novamente.');
+                setIsLoading(false);
             }
         } catch (error) {
             console.error('Erro na requisição:', error);
-        }
-    };
-
-    const handleVerCronograma = () => {
-        if (cronograma) {
-            navigate('/vercronograma', { state: { cronograma_output: cronograma } });
-        } else {
-            alert('Por favor, gere um cronograma primeiro.');
+            alert('Não foi possível conectar ao servidor. Verifique sua conexão.');
+            setIsLoading(false);
         }
     };
 
@@ -44,61 +49,49 @@ const FazerFormulario = () => {
                     <div className="Grid-dias">
                         <div className="Caixa-input">
                             <label>Segunda-feira (horário):</label>
-                            <input placeholder="Digite aqui"{...register('segunda')} />
+                            <input placeholder="Digite aqui" {...register('segunda')} />
                         </div>
-
                         <div className="Caixa-input">
                             <label>Terça-feira (horário):</label>
-                            <input placeholder="Digite aqui"{...register('terca')} />
+                            <input placeholder="Digite aqui" {...register('terca')} />
                         </div>
                         <div className="Caixa-input">
                             <label>Quarta-feira (horário):</label>
-                            <input placeholder="Digite aqui"{...register('quarta')} />
+                            <input placeholder="Digite aqui" {...register('quarta')} />
                         </div>
-                
                         <div className="Caixa-input">
                             <label>Quinta-feira (horário):</label>
-                            <input placeholder="Digite aqui"{...register('quinta')} />
+                            <input placeholder="Digite aqui" {...register('quinta')} />
                         </div>
-
                         <div className="Caixa-input">
                             <label>Sexta-feira (horário):</label>
-                            <input placeholder="Digite aqui"{...register('sexta')} />
+                            <input placeholder="Digite aqui" {...register('sexta')} />
                         </div>
-
                         <div className="Caixa-input">
                             <label>Sábado (horário):</label>
-                            <input placeholder="Digite aqui"{...register('sabado')} />
+                            <input placeholder="Digite aqui" {...register('sabado')} />
                         </div>
                     </div>
-
                     <div className="Caixa-Domingo">
-                    <div className="Caixa-input">
-                        <label>Domingo (horário):</label>
-                        <input placeholder="Digite aqui"{...register('domingo')} />
-                    </div>
+                        <div className="Caixa-input">
+                            <label>Domingo (horário):</label>
+                            <input placeholder="Digite aqui" {...register('domingo')} />
+                        </div>
                     </div>
                 </div>
-
-
                 <div className="Caixa-input">
                     <label>Disciplinas (separadas por vírgula):</label>
-                    <input placeholder="Digite aqui"{...register('disciplinas')} />
+                    <input placeholder="Digite aqui" {...register('disciplinas')} />
                 </div>
-
                 <div className="Caixa-input">
                     <label>Observações:</label>
-                    <textarea placeholder="Digite aqui"{...register('observacoes')} />
+                    <textarea placeholder="Digite aqui" {...register('observacoes')} />
                 </div>
-
-                <div className="Caixa-botoes">
-                    <div className="Caixa-botao">
-                        <button className="botao" type="submit">Confirmar</button>
-                    </div>
-
-                    <div className="Caixa-botao">
-                        <button className="botao" onClick={handleVerCronograma}>Ver Cronograma</button>
-                    </div>
+                
+                <div className="Caixa-botoes-centralizado">
+                    <button className="botao" type="submit" disabled={isLoading}>
+                        {isLoading ? 'Gerando...' : 'Gerar Cronograma no Chat'}
+                    </button>
                 </div>
             </form>
         </div>

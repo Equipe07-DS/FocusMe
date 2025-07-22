@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './ChatInterface.module.css';
 
 const ChatInterface = () => {
+  const location = useLocation();
+
   const [messages, setMessages] = useState([
     { 
       role: 'assistant', 
@@ -11,8 +14,30 @@ const ChatInterface = () => {
   ]);
 
   const [inputValue, setInputValue] = useState('');
-
   const messageAreaRef = useRef(null);
+
+  useEffect(() => {
+        if (location.state && location.state.cronogramaGerado) {
+            const { prompt, cronogramaGerado } = location.state;
+
+            const userPromptMessage = {
+                role: 'user',
+                content: `Gere um cronograma para estas disciplinas: ${prompt.disciplinas}. Observações: ${prompt.observacoes}`,
+                timestamp: new Date()
+            };
+
+            const assistantResponseMessage = {
+                role: 'assistant',
+                content: cronogramaGerado,
+                timestamp: new Date()
+            };
+
+            setMessages([userPromptMessage, assistantResponseMessage]);
+
+            window.history.replaceState({}, document.title);
+        }
+    }, [location.state]);
+
 
   useEffect(() => {
     if (messageAreaRef.current) {
@@ -32,7 +57,6 @@ const ChatInterface = () => {
     };
     
     setMessages(prevMessages => [...prevMessages, userMessage]);
-    
     setInputValue('');
 
     try {
@@ -71,9 +95,7 @@ const ChatInterface = () => {
 
   return (
     <div className={styles.chatInterface}>
-      {}
       <div className={styles.messageArea} ref={messageAreaRef}>
-        {}
         {messages.map((msg, index) => {
           const showDateSeparator = 
             index === 0 || 
@@ -81,10 +103,8 @@ const ChatInterface = () => {
 
           return (
             <React.Fragment key={index}>
-              {}
               {showDateSeparator && (
                 <div className={styles.dateSeparator}>
-                  {}
                   <span>
                     {new Date(msg.timestamp).toLocaleDateString('pt-BR', {
                       day: 'numeric',
@@ -95,7 +115,6 @@ const ChatInterface = () => {
                 </div>
               )}
 
-              {}
               <div className={`${styles.message} ${styles[msg.role]}`}>
                 <p>{msg.content}</p>
               </div>
@@ -104,7 +123,6 @@ const ChatInterface = () => {
         })}
       </div>
 
-      {}
       <form onSubmit={handleSendMessage} className={styles.inputArea}>
         <input
           type="text"
