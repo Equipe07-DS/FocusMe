@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Executa o servidor FastAPI com uvicorn
+uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
