@@ -2,24 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    background-color: #72ACD2;
+}
+
 input {
     border-radius: 7px;
-    background-color: #F6EDE8;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 8px;
-    border: 1px solid #ccc;
+    background-color: white;
+    border: 1px solid lightgray;
+    color: black
+}
+
+input:focus {
+  outline: none;
 }
 
 textarea {
-    border-radius: px;
-    background-color: #F6EDE8;
-    padding: 8px;
-    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: white;
+    border: 1px solid lightgray;
+    color: black;
 }
 
-label {
-    color: #004E7E;
-    font-weight: 650;
+textarea:focus {
+  outline: none;
 }
 
 form {
@@ -35,14 +41,43 @@ form {
     margin-bottom: 10px;
 }
 
+
 .Caixa-dia {
     width: 100%;
-    border: 1px solid #ccc;
     border-radius: 20px;
-    background-color: #F9F9F9;
-    padding: 5px;
-    transition: all 0.8s ease;
-    align-self: start;  
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 0.4s;
+}
+
+.Caixa-dia[open] {
+    background-color: white;
+    transition: all 0.4s;
+}
+
+.Caixa-dia:hover {
+    background-color: #ED5522;
+    color: white;
+    transition: all 0.2s;
+}
+
+.Caixa-dia summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #004E7E;
+    padding: 8px;
+    font-size: 1.1rem;
+    list-style: none;
+    justify-self: center;
+}
+
+.Caixa-dia:hover summary {
+    background-color: #ED5522;
+    color: white;
+    transition: all 0.2s;
 }
 
 .Grid-dias {
@@ -54,45 +89,11 @@ form {
     align-items: start;
 }
 
-
-.Caixa-dia[open] {
-    background-color: #FFF;
-    border-color: #ED5522;
-}
-
-.Caixa-dia summary {
-    cursor: pointer;
-    font-weight: 700;
-    color: #004E7E;
-    padding: 8px;
-    font-size: 1.1rem;
-    list-style: none;
-}
-
-.Caixa-dia summary:hover {
-    color: #ED5522;
-}
-
-
-.Caixa-Domingo {
-    width: 26vw;
-}
-
 .Caixa-botoes {
     justify-items: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2vw;
-}
-
-.Caixa-dia {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: #F9F9F9;
-    padding: 5px;
-    transition: all 0.8s ease;
-    align-self: start; 
 }
 
 .Dias {
@@ -109,11 +110,12 @@ form {
     grid-template-columns: repeat(1, 1fr);
     justify-items: center;
     margin-top: 2vh;
+    
 }
 
 .botao {
-    background-color: #004E7E;
-    color: #FFFBF5;
+    background-color:#ED5522;
+    color: white;
     border-radius: 17px;
     border: none;
     cursor: pointer;
@@ -121,11 +123,11 @@ form {
     font-weight: bold;
     width: 17vw;
     height: 7vh;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s;
 }
 
 .botao:hover {
-    background-color: #F48763;
+    background-color: #fc7e54;
 }
 
 .botao:disabled {
