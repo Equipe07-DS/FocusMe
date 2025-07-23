@@ -1,4 +1,4 @@
-from math import inf
+
 from fastapi import FastAPI, HTTPException, status, Depends
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -142,4 +142,4 @@ def listar_cronogramas(user_id: int, db: Session = Depends(get_session)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuário não encontrado")
 
     cronogramas = db.query(Cronograma).filter(Cronograma.user_id == user_id).all()
-    return [{"id": c.id, "nome": c.nome, "descricao": c.descricao} for c in cronogramas]
+    return [{"id": cronograma.id, "nome": cronograma.nome, "descricao": cronograma.descricao} for cronograma in cronogramas]
