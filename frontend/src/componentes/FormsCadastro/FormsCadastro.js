@@ -63,14 +63,14 @@ const FormsCadastro = () => {
             <div className="flex flex-col">
             
               <label className={`${styles.LabelCadastro}`} >Nome</label>
-              <input className={`${styles.InputsCadastro}`}  placeholder="Digite aqui"{...register('nome')} />
+              <input className={`${styles.InputsCadastro}`}  placeholder="Nome"{...register('nome')} />
             
             </div>
 
             <div className=" flex flex-col">
             
               <label className={`${styles.LabelCadastro}`}>E-mail</label>
-              <input className={`${styles.InputsCadastro}`}  placeholder="Digite aqui"{...register('email')} />
+              <input className={`${styles.InputsCadastro}`}  placeholder="E-mail"{...register('email')} />
             
             </div>
 
@@ -78,14 +78,14 @@ const FormsCadastro = () => {
             <div className=" flex flex-col">
 
               <label className={`${styles.LabelCadastro}`}>Senha</label>
-              <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Digite aqui"{...register('senha')} />
+              <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Senha"{...register('senha')} />
 
             </div>
 
             <div className=" flex flex-col mb-4">
 
               <label className={`${styles.LabelCadastro}`}>Confirme sua senha</label>
-              <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Digite aqui"{...register('confirmacao')} />
+              <input className={`${styles.InputsCadastro}`}  type="password" placeholder="Confirme sua senha"{...register('confirmacao')} />
 
             </div>
 
