@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Barra from "../Barra/Barra"
-import "./TelaPerfil.module.css";
+import style from "./TelaPerfil.module.css";
 
 
 export default function CompTelaPerfil({
@@ -23,19 +23,19 @@ export default function CompTelaPerfil({
 
   return(
     // Div geral
-    <div className="bg-[#72ACD2] max-w-screen h-auto flex justify-center flex-col items-center overflow-x-hidden">
+    <div className="bg-[#72ACD2] max-w-screen h-screen flex flex-col items-center overflow-x-hidden">
       
       <Barra/>
 
       {/* Card do perfil */}
-      <div className="w-4/5 h-full bg-white rounded-3xl shadow-2xl mt-10">
+      <div className={style.Quadro}>
         
 
         {/* Parte de cima do card, com o título "Perfil" e a foto do usuário */}
         <div className="flex w-full flex-col items-center mb-10 pb-5">
           
           {/* Título perfil */}
-          <div className="bg-[#004E7E] w-full py-2 flex justify-center rounded-b-3xl rounded-t-3xl mb-6">
+          <div className="bg-[#004E7E] w-full py-2 flex justify-center rounded-b-2xl rounded-t-2xl mb-6">
             <h1 className="text-white font-bold text-3xl align-top h-10">Perfil</h1>
           </div>
 
@@ -48,31 +48,33 @@ export default function CompTelaPerfil({
         
         {/* Visualizar cronogramas */}
 
-        {/* Cronograma 1 */}
-        <div className="ml-6 w-10/12 max-h-96 overflow-y-auto  bg-[#004E7E] hover:cursor-pointer hover:opacity-90 rounded-lg px-4 py-3 mb-5" onClick={() => setAberto1(!aberto1)}>
-          <p className="text-white font-bold text-lg">Cronograma 1</p>
-          {aberto1 && (
-            <div className="text-white break-words overflow-x-auto bg-[#004E7E] mt-2">{cronograma1}</div>)
-          }
-        </div>
+        <div className="bg-[#F6EDE8] rounded-xl p-5 w-9/12 max-h-64 overflow-y-auto items-center justify-center">
+          {/* Cronograma 1 */}
+          <div className="w-full max-h-96 overflow-y-auto  bg-[#004E7E] hover:cursor-pointer hover:opacity-90 rounded-lg px-4 py-3 mb-5" onClick={() => setAberto1(!aberto1)}>
+            <p className="text-white font-bold text-lg">Cronograma 1</p>
+            {aberto1 && (
+              <div className="text-white break-words overflow-x-auto bg-[#004E7E] mt-2">{cronograma1}</div>)
+            }
+          </div>
 
-        {/* Cronograma 2 */}
-        <div className="ml-6 w-10/12 max-h-96 overflow-y-auto  bg-[#004E7E] hover:cursor-pointer hover:opacity-90 rounded-lg px-4 py-3 mb-5" onClick={() => setAberto2(!aberto2)}>
-          <p className="text-white font-bold text-lg">Cronograma 2</p>
-          {aberto2 && (
-            <div className="text-white break-words overflow-x-auto bg-[#004E7E] mt-2">{cronograma2}</div>)
-          }
-        </div>
+          {/* Cronograma 2 */}
+          <div className="w-full max-h-96 overflow-y-auto  bg-[#004E7E] hover:cursor-pointer hover:opacity-90 rounded-lg px-4 py-3 mb-5" onClick={() => setAberto2(!aberto2)}>
+            <p className="text-white font-bold text-lg">Cronograma 2</p>
+            {aberto2 && (
+              <div className="text-white break-words overflow-x-auto bg-[#004E7E] mt-2">{cronograma2}</div>)
+            }
+          </div>
 
 
-        {/* Cronograma 3 */}
-        <div className="ml-6 w-10/12 max-h-96 overflow-y-auto  bg-[#004E7E] hover:cursor-pointer hover:opacity-90 rounded-lg px-4 py-3 mb-5" onClick={() => setAberto3(!aberto3)}>
-          <p className="text-white font-bold text-lg ">Cronograma 3</p>
-          {aberto3 && (
-            <div className="text-white break-words overflow-x-auto bg-[#004E7E] mt-2">{cronograma3}</div>)
-          }
+          {/* Cronograma 3 */}
+          <div className="w-full max-h-96 overflow-y-auto  bg-[#004E7E] hover:cursor-pointer hover:opacity-90 rounded-lg px-4 py-3 mb-5" onClick={() => setAberto3(!aberto3)}>
+            <p className="text-white font-bold text-lg ">Cronograma 3</p>
+            {aberto3 && (
+              <div className="text-white break-words overflow-x-auto bg-[#004E7E] mt-2">{cronograma3}</div>)
+            }
+          </div>
+          
         </div>
-        
 
       </div>
       
