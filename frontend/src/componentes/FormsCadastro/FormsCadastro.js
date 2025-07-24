@@ -31,7 +31,7 @@ const FormsCadastro = () => {
   };
 
   const handleFazerLogin = () => {
-    navigate('/TelaLogin');
+    navigate('/login');
   };
   
   return (

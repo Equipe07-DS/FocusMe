@@ -13,7 +13,7 @@ function App() {
                 <Route path='/vercronograma' element={<VerCronograma />} />
                 <Route path='/novocronograma' element={<Novo />} />
                 <Route path='/cadastro' element={<TelaCadastro />} />
-                <Route path='/TelaLogin' element={<TelaLogin />} />
+                <Route path='/login' element={<TelaLogin />} />
             </Routes>
         </BrowserRouter>
     );
