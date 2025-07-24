@@ -38,7 +38,7 @@ const FormsLogin = () => {
 
 
   const handleFazerCadastro = () => {
-    navigate('/TelaCadastro');
+    navigate('/cadastro');
   };
 
   const email = watch('email');
