@@ -45,7 +45,7 @@ form {
 .Caixa-dia {
     width: 100%;
     border-radius: 20px;
-    background-color: white;
+    background-color: #F6EDE8;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
@@ -54,15 +54,16 @@ form {
 }
 
 .Caixa-dia[open] {
-    background-color: white;
+    background-color: #F6EDE8;
     transition: all 0.4s;
 }
 
 .Caixa-dia:hover {
-    background-color: #ED5522;
+    background-color: #F38763;
     color: white;
     transition: all 0.2s;
 }
+
 
 .Caixa-dia summary {
     cursor: pointer;
@@ -75,7 +76,7 @@ form {
 }
 
 .Caixa-dia:hover summary {
-    background-color: #ED5522;
+    background-color: #F38763;
     color: white;
     transition: all 0.2s;
 }
@@ -127,11 +128,26 @@ form {
 }
 
 .botao:hover {
-    background-color: #fc7e54;
+    background-color: #F38763;
 }
 
 .botao:disabled {
     background-color: #ccc;
     color: #666;
     cursor: not-allowed;
+}
+
+.Quadro {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: min-content;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+  padding: 3vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
