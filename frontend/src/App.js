@@ -15,7 +15,7 @@ function App() {
                 <Route path='/novocronograma' element={<Novo />} />
                 <Route path='/TelaCadastro' element={<TelaCadastro />} />
                 <Route path='/TelaLogin' element={<TelaLogin />} />
-                <Route path='/TelaPerfil' element={<TelaPerfil />} />
+                <Route path='/perfil' element={<TelaPerfil />} />
             </Routes>
         </BrowserRouter>
     );
