@@ -4,11 +4,11 @@
 
 - **Quem revisa? (ex.: 1 pessoa, 2 pessoas?)**
 
-   ****O código, após o pedido de pull request, é revisado por uma pessoa.		****
+   O código, após o pedido de pull request, é revisado por uma pessoa.
 
 - **Como escolher o revisor? (ex.: voluntário, rodízio)**
 
-   ****O revisor é voluntário.
+   O revisor é voluntário.
 
 - **Quais critérios precisam ser verificados? (ex.: legibilidade, boas práticas, testes, segurança)**
 
