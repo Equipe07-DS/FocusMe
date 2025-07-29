@@ -11,7 +11,7 @@ input {
 }
 
 textarea {
-    border-radius: px;
+    border-radius: 7px;
     background-color: #F6EDE8;
     padding: 8px;
     border: 1px solid #ccc;
@@ -78,11 +78,10 @@ form {
     width: 26vw;
 }
 
-.Caixa-botoes {
-    justify-items: center;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2vw;
+.Caixa-botoes-centralizado {
+    width: 100%;
+    display: flex;
+    margin-top: 1rem;
 }
 
 .Caixa-dia {
@@ -112,6 +111,7 @@ form {
 }
 
 .botao {
+    margin: auto;
     background-color: #004E7E;
     color: #FFFBF5;
     border-radius: 17px;

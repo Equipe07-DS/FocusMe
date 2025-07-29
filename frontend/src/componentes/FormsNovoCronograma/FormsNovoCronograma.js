@@ -6,7 +6,7 @@ import { useState } from 'react';
 const FazerFormulario = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const [cronograma, setCronograma] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
     // Transformar os dados para corresponder ao modelo EstudoInput
@@ -36,28 +36,26 @@ const FazerFormulario = () => {
 
       if (response.ok) {
         const respostaApi = await response.json();
-        setCronograma(respostaApi.cronograma);
-        // Armazena os dados formatados para passar para VerCronograma
-        localStorage.setItem('estudoData', JSON.stringify(formattedData));
+        // Quando estiver pronto, navega diretamente para a tela de chat com os dados.
+        navigate('/chat', { 
+          state: { 
+            estudoData: formattedData, 
+            cronograma_output: respostaApi.cronograma 
+          } 
+        });
+
       } else {
         const erro = await response.json();
-        console.error('Erro ao enviar dados para o backend:', erro);
         alert(`Erro ao gerar cronograma: ${erro.detail || 'Erro desconhecido'}`);
+        setIsLoading(false); // Libera o botão em caso de erro
       }
     } catch (error) {
       console.error('Erro na requisição:', error);
       alert('Erro ao gerar cronograma. Tente novamente.');
+      setIsLoading(false); // Libera o botão em caso de erro
     }
   };
 
-  const handleVerCronograma = () => {
-    if (cronograma) {
-      const estudoData = JSON.parse(localStorage.getItem('estudoData') || '{}');
-      navigate('/vercronograma', { state: { cronograma_output: cronograma, estudoData } });
-    } else {
-      alert('Por favor, gere um cronograma primeiro.');
-    }
-  };
 
   const diasDaSemana = [
     { nome: 'Segunda-feira', chave: 'segunda' },
@@ -70,56 +68,48 @@ const FazerFormulario = () => {
   ];
 
   return (
-    <section className="Caixa">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <section className="Grid-dias">
-          {diasDaSemana.map((dia) => (
-            <details key={dia.chave} className="Caixa-dia">
-              <summary>{dia.nome}</summary>
+    <form className="Caixa" onSubmit={handleSubmit(onSubmit)}>
 
-              <div className="Caixa-input">
-                <label>Horário disponível:</label>
-                <input
-                  placeholder="Ex: 14h às 16h"
-                  {...register(`${dia.chave}.horario`)}
-                />
-              </div>
+      <section className="Grid-dias">
+        {diasDaSemana.map((dia) => (
+          <details key={dia.chave} className="Caixa-dia">
+            <summary>{dia.nome}</summary>
 
-              <div className="Caixa-input">
-                <label>Observações:</label>
-                <textarea
-                  placeholder="Ex: foco em revisão, evitar tarde..."
-                  {...register(`${dia.chave}.observacoes`)}
-                />
-              </div>
-            </details>
-          ))}
-        </section>
+            <div className="Caixa-input">
+              <label>Horário disponível:</label>
+              <input
+                placeholder="Ex: 14h às 16h"
+                {...register(`${dia.chave}.horario`)}
+              />
+            </div>
 
-        <fieldset className="Caixa-input">
-          <label>Matéria para estudar na semana:</label>
-          <input
-            placeholder="Ex: Matemática"
-            {...register('materia')}
-          />
-        </fieldset>
+            <div className="Caixa-input">
+              <label>Observações:</label>
+              <textarea
+                placeholder="Ex: foco em revisão, evitar tarde..."
+                {...register(`${dia.chave}.observacoes`)}
+              />
+            </div>
+          </details>
+        ))}
+      </section>
 
-        <footer className="Caixa-botoes">
-          <button className="botao" type="submit">
-            Confirmar
-          </button>
+      {/* O campo de matéria continua como antes */}
+      <fieldset className="Caixa-input">
+        <label>Matéria para estudar na semana:</label>
+        <input
+          placeholder="Ex: Matemática"
+          {...register('materia')}
+        />
+      </fieldset>
 
-          <button
-            className="botao"
-            type="button"
-            onClick={handleVerCronograma}
-            disabled={!cronograma}
-          >
-            Ver Cronograma
-          </button>
-        </footer>
-      </form>
-    </section>
+      <footer className="Caixa-botoes-centralizado">
+        <button className="botao" type="submit" disabled={isLoading}>
+          {isLoading ? 'Gerando...' : 'Gerar Cronograma'}
+        </button>
+      </footer>
+      
+    </form>
   );
 };
 
