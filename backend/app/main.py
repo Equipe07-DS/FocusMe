@@ -46,6 +46,9 @@ class CronogramaInput(BaseModel):
     descricao: str
     user_id: int
 
+class ChatInput(BaseModel):
+    mensagem: str
+
 # Criar tabelas no banco de dados
 Base.metadata.create_all(bind=engine)
 
@@ -143,3 +146,11 @@ def listar_cronogramas(user_id: int, db: Session = Depends(get_session)):
 
     cronogramas = db.query(Cronograma).filter(Cronograma.user_id == user_id).all()
     return [{"id": cronograma.id, "nome": cronograma.nome, "descricao": cronograma.descricao} for cronograma in cronogramas]
+
+@app.post("/chat")
+def conversar(chat_input: ChatInput):
+    messages = [{"role": "user", "content": chat_input.mensagem}]
+
+    resposta_ia = gerar_resposta(messages)
+
+    return {"resposta": resposta_ia}
