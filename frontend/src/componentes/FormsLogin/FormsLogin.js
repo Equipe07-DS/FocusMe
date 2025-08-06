@@ -41,6 +41,10 @@ const FormsLogin = () => {
     navigate('/cadastro');
   };
 
+  const handleLogin = () => {
+    navigate('/inicio');
+  };
+
   const email = watch('email');
   const senha = watch('senha');
   const camposPreenchidos = email && senha;
@@ -91,6 +95,7 @@ const FormsLogin = () => {
                 className={`${styles.Botao} hover:opacity-70`}
                 type="submit"
                 disabled={!camposPreenchidos}
+                onClick={handleLogin}
               >
                 Entrar
               </button>
