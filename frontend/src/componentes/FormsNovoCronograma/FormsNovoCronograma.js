@@ -110,10 +110,10 @@ const FazerFormulario = () => {
               />
             </fieldset>
 
-            <footer className="Caixa-botoes-centralizado">
-              <button className="botao" type="submit" disabled={isLoading}>
-              {isLoading ? 'Gerando...' : 'Gerar Cronograma'}
-            </button>
+            <footer className={style['Caixa-botoes-centralizado']}>
+              <button className={style['botao']} type="submit" disabled={isLoading}>
+                {isLoading ? 'Gerando...' : 'Gerar Cronograma'}
+              </button>
             </footer>
 
           </form>
