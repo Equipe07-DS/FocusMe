@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import './FormsNovoCronograma.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import style from './FormsNovoCronograma.module.css'
 
 const FazerFormulario = () => {
   const { register, handleSubmit } = useForm();
@@ -66,48 +66,60 @@ const FazerFormulario = () => {
   ];
 
   return (
-    <form className="Caixa" onSubmit={handleSubmit(onSubmit)}>
+    <div className='py-10 flex justify-center flex-col items-center'>
+      <div className={style.Quadro}>
+        <div className="bg-[#004E7E] px-10 w-full flex flex-col items-center justify-center rounded-3xl mb-6 py-2">
+          <h1 className="text-white font-bold text-3xl align-top mb-2">Crie seu cronograma de estudos personalizado</h1>
+          <p className='text-white text-lg'>Preencha as informações de acordo com a sua disponibilidade</p>
+        </div>
 
-      <section className="Grid-dias">
-        {diasDaSemana.map((dia) => (
-          <details key={dia.chave} className="Caixa-dia">
-            <summary>{dia.nome}</summary>
+        <section className={style.Caixa}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <section className={style['Grid-dias']}>
+              {diasDaSemana.map((dia) => (
+                <details key={dia.chave} className={`${style['Caixa-dia']}`}>
+                  <summary className={`${style['Caixa-dia']}`}>{dia.nome}</summary>
 
-            <div className="Caixa-input">
-              <label>Horário disponível:</label>
+                  <div className={style['Caixa-input']}>
+                    <label>Horário disponível:</label>
+                    <input
+                      placeholder="Ex: 14h às 16h"
+                      className='text-black px-2 py-1'
+                      {...register(`${dia.chave}.horario`)}
+                    />
+                  </div>
+
+                  <div className={style['Caixa-input']}>
+                    <label >Observações:</label>
+                    <textarea
+                      placeholder="Ex: foco em revisão, evitar horários à tarde..."
+                      className='text-black px-2 py-2'
+                      {...register(`${dia.chave}.observacoes`)}
+                    />
+                  </div>
+                </details>
+              ))}
+            </section>
+
+            <fieldset className={style['Caixa-input']}>
+              <label className='text-[#004E7E] font-bold text-xl'>Matérias para estudar na semana</label>
               <input
-                placeholder="Ex: 14h às 16h"
-                {...register(`${dia.chave}.horario`)}
+                placeholder="Ex: Matemática, Biologia"
+                className='text-black px-2 py-1'
+                {...register('materia')}
               />
-            </div>
+            </fieldset>
 
-            <div className="Caixa-input">
-              <label>Observações:</label>
-              <textarea
-                placeholder="Ex: foco em revisão, evitar tarde..."
-                {...register(`${dia.chave}.observacoes`)}
-              />
-            </div>
-          </details>
-        ))}
-      </section>
+            <footer className={style['Caixa-botoes-centralizado']}>
+              <button className={style['botao']} type="submit" disabled={isLoading}>
+                {isLoading ? 'Gerando...' : 'Gerar Cronograma'}
+              </button>
+            </footer>
 
-      {/* O campo de matéria continua como antes */}
-      <fieldset className="Caixa-input">
-        <label>Matéria para estudar na semana:</label>
-        <input
-          placeholder="Ex: Matemática"
-          {...register('materia')}
-        />
-      </fieldset>
-
-      <footer className="Caixa-botoes-centralizado">
-        <button className="botao" type="submit" disabled={isLoading}>
-          {isLoading ? 'Gerando...' : 'Gerar Cronograma'}
-        </button>
-      </footer>
-      
-    </form>
+          </form>
+        </section>
+      </div>
+    </div>
   );
 };
 
