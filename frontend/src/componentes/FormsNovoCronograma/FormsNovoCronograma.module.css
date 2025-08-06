@@ -2,24 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    background-color: #72ACD2;
+}
+
 input {
     border-radius: 7px;
-    background-color: #F6EDE8;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 8px;
-    border: 1px solid #ccc;
+    background-color: white;
+    border: 1px solid lightgray;
+    color: black
+}
+
+input:focus {
+  outline: none;
 }
 
 textarea {
     border-radius: 7px;
-    background-color: #F6EDE8;
-    padding: 8px;
-    border: 1px solid #ccc;
+    background-color: white;
+    border: 1px solid lightgray;
+    color: black;
 }
 
-label {
-    color: #004E7E;
-    font-weight: 650;
+textarea:focus {
+  outline: none;
 }
 
 form {
@@ -35,14 +41,44 @@ form {
     margin-bottom: 10px;
 }
 
+
 .Caixa-dia {
     width: 100%;
-    border: 1px solid #ccc;
     border-radius: 20px;
-    background-color: #F9F9F9;
-    padding: 5px;
-    transition: all 0.8s ease;
-    align-self: start;  
+    background-color: #F6EDE8;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 0.4s;
+}
+
+.Caixa-dia[open] {
+    background-color: #F6EDE8;
+    transition: all 0.4s;
+}
+
+.Caixa-dia:hover {
+    background-color: #F38763;
+    color: white;
+    transition: all 0.2s;
+}
+
+
+.Caixa-dia summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #004E7E;
+    padding: 8px;
+    font-size: 1.1rem;
+    list-style: none;
+    justify-self: center;
+}
+
+.Caixa-dia:hover summary {
+    background-color: #F38763;
+    color: white;
+    transition: all 0.2s;
 }
 
 .Grid-dias {
@@ -54,44 +90,11 @@ form {
     align-items: start;
 }
 
-
-.Caixa-dia[open] {
-    background-color: #FFF;
-    border-color: #ED5522;
-}
-
-.Caixa-dia summary {
-    cursor: pointer;
-    font-weight: 700;
-    color: #004E7E;
-    padding: 8px;
-    font-size: 1.1rem;
-    list-style: none;
-}
-
-.Caixa-dia summary:hover {
-    color: #ED5522;
-}
-
-
-.Caixa-Domingo {
-    width: 26vw;
-}
-
-.Caixa-botoes-centralizado {
-    width: 100%;
-    display: flex;
-    margin-top: 1rem;
-}
-
-.Caixa-dia {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: #F9F9F9;
-    padding: 5px;
-    transition: all 0.8s ease;
-    align-self: start; 
+.Caixa-botoes {
+    justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
 }
 
 .Dias {
@@ -108,12 +111,12 @@ form {
     grid-template-columns: repeat(1, 1fr);
     justify-items: center;
     margin-top: 2vh;
+    
 }
 
 .botao {
-    margin: auto;
-    background-color: #004E7E;
-    color: #FFFBF5;
+    background-color:#ED5522;
+    color: white;
     border-radius: 17px;
     border: none;
     cursor: pointer;
@@ -121,15 +124,40 @@ form {
     font-weight: bold;
     width: 17vw;
     height: 7vh;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s;
 }
 
 .botao:hover {
-    background-color: #F48763;
+    background-color: #F38763;
 }
 
 .botao:disabled {
     background-color: #ccc;
     color: #666;
     cursor: not-allowed;
+}
+
+.Quadro {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: min-content;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+  padding: 3vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.Caixa-botoes-centralizado {
+    margin-top: 1rem;
+    align-items: center;
+    width: 57vw;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    margin-top: 2vh;
 }
