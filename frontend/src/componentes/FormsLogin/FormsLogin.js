@@ -94,7 +94,7 @@ const FormsLogin = () => {
                 className={`${styles.Botao} hover:opacity-70`}
                 type="submit"
                 disabled={!camposPreenchidos}
-                onClick={handleLogin}
+              
               >
                 Entrar
               </button>
