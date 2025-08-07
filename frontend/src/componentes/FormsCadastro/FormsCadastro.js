@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from './FormsCadastro.module.css';
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "https://back-fa7w.onrender.com";
 
 const FormsCadastro = () => {
 
@@ -12,7 +12,7 @@ const FormsCadastro = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("${API_URL}", {
+      const response = await fetch(`${API_URL}/cadastro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,9 +35,7 @@ const FormsCadastro = () => {
     navigate('/login');
   };
 
-  const handleCadastro = () => {
-    navigate('/novocronograma');
-  };
+
   
   return (
 
@@ -97,7 +95,7 @@ const FormsCadastro = () => {
             <div className="flex flex-col gap-1 items-center">
 
 
-              <button className={`${styles.Botao} hover:opacity-70`} type="submit" onClick={handleCadastro}>Cadastrar</button>
+              <button className={`${styles.Botao} hover:opacity-70`} type="submit">Cadastrar</button>
 
 
               <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" data-testid='Fazerlogin' onClick={handleFazerLogin}>Já possui uma conta? Faça login agora</button>
