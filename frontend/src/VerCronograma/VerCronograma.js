@@ -1,4 +1,5 @@
 import './VerCronograma.css';
+import Barra from '../componentes/Barra/Barra';
 import { useEffect, useState } from 'react';
 
 function VerCronograma() {
@@ -129,23 +130,32 @@ function VerCronograma() {
 
   return (
     <div className="cronograma-container">
-      <h1 className="Título">Seu cronograma de estudos</h1>
+      <Barra></Barra>
+      <div className='quadro'>
+      <div className="bg-[#004E7E] px-10 w-full flex flex-col items-center justify-center rounded-3xl mb-6 py-2">
+          <h1 className="text-white font-bold text-3xl align-top mb-2">Seu cronograma de estudos personalizado</h1>
+        </div>
+      <div className='conteinerdias'>
       {Object.entries(cronogramaDias).map(([dia, tarefas]) => (
-        <div key={dia} className="Quadro-cronograma">
+        <div key={dia} className="Caixa-dia">
           <h2 className="Título">{dia}</h2>
-          {tarefas.length > 0 ? (
-            <ul className="Texto-cronograma">
-              {tarefas.map((tarefa, index) => (
-                <li key={index}>
-                  📌 {tarefa.horario}: {tarefa.descricao}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="Texto-cronograma">Nenhuma tarefa para este dia.</p>
-          )}
+          <div className='Caixa-input'>
+              {tarefas.length > 0 ? (
+                <ul className="Texto-cronograma">
+                  {tarefas.map((tarefa, index) => (
+                    <li key={index}>
+                      📌 {tarefa.horario}: {tarefa.descricao}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="Texto-cronograma">Nenhuma tarefa para este dia.</p>
+              )}
+          </div>
         </div>
       ))}
+      </div>
+      </div>
     </div>
   );
 }
