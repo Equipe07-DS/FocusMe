@@ -33,6 +33,10 @@ const FormsCadastro = () => {
   const handleFazerLogin = () => {
     navigate('/login');
   };
+
+  const handleCadastro = () => {
+    navigate('/novocronograma');
+  };
   
   return (
 
@@ -92,7 +96,7 @@ const FormsCadastro = () => {
             <div className="flex flex-col gap-1 items-center">
 
 
-              <button className={`${styles.Botao} hover:opacity-70`} type="submit">Cadastrar</button>
+              <button className={`${styles.Botao} hover:opacity-70`} type="submit" onClick={handleCadastro}>Cadastrar</button>
 
 
               <button className="text-blue-500 text-sm hover:text-blue-800 hover:underline" data-testid='Fazerlogin' onClick={handleFazerLogin}>Já possui uma conta? Faça login agora</button>
@@ -105,19 +109,6 @@ const FormsCadastro = () => {
       </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   );
 };
