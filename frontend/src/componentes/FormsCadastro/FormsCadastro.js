@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from './FormsCadastro.module.css';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const FormsCadastro = () => {
 
@@ -11,7 +12,7 @@ const FormsCadastro = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:8000/cadastro", {
+      const response = await fetch("${API_URL}", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
