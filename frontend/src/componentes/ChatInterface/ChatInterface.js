@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './ChatInterface.module.css';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const ChatInterface = () => {
   const location = useLocation();
@@ -64,7 +65,7 @@ const ChatInterface = () => {
     setInputValue('');
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      const response = await fetch("${API_URL}", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mensagem: userMessage.content }), 
