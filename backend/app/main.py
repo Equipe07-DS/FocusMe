@@ -154,3 +154,7 @@ def conversar(chat_input: ChatInput):
     resposta_ia = gerar_resposta(messages)
 
     return {"resposta": resposta_ia}
+
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "API está funcionando!"}
