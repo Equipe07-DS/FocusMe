@@ -42,9 +42,7 @@ const FormsLogin = () => {
     navigate('/cadastro');
   };
 
-  const handleLogin = () => {
-    navigate('/inicio');
-  };
+
 
   const email = watch('email');
   const senha = watch('senha');
