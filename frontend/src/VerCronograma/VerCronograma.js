@@ -46,7 +46,7 @@ function VerCronograma() {
       }
 
       try {
-        const res = await fetch(`http://localhost:8000/cronogramas/ultimo?user_id=${user_id}`);
+        const res = await fetch(`${API_URL}/cronogramas/ultimo?user_id=${user_id}`);
         if (!res.ok) {
           if (res.status === 404) {
             setError('Nenhum cronograma encontrado. Crie um novo cronograma.');
