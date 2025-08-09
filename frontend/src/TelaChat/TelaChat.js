@@ -3,6 +3,7 @@ import ChatInterface from '../componentes/ChatInterface/ChatInterface';
 import styles from './TelaChat.module.css';
 import Barra from '../componentes/Barra/Barra';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+const API_URL = "https://back-fa7w.onrender.com";
 
 function TelaChat() {
   const location = useLocation();
