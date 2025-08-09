@@ -21,9 +21,9 @@ const Barra = () => {
                     <a href="/inicio" className={`${styles.texto_botoes}`}>Inicio</a>
                 </li>
                 <li className={`${styles.caixa_botoes}`}>
-                    <a href="/novocronograma" className={`${styles.texto_botoes}`}>Cronograma</a>
+                    <a href="/vercronograma" className={`${styles.texto_botoes}`}>Cronograma</a>
                 </li>
-                <li className={`${styles.caixa_botoes}`}><a href="" className={`${styles.texto_botoes}`}>Chat</a></li>
+                <li className={`${styles.caixa_botoes}`}><a href="/chat" className={`${styles.texto_botoes}`}>Chat</a></li>
                 <li className={`${styles.caixa_botoes}`}><a href="" className={`${styles.texto_botoes}`}>Perfil</a></li>
             </ul>
         </nav>
