@@ -53,7 +53,7 @@ function TelaChat() {
       if (response.ok) {
         const data = await response.json();
         setSalvo(true);
-        alert(`Cronograma salvo com sucesso! ID: ${data.id}`);
+        alert(`Cronograma salvo com sucesso! Você pode vê-lo na aba de cronograma. ID: ${data.id}`);
       } else {
         const erro = await response.json();
         alert(`Erro ao salvar: ${erro.detail || 'Erro desconhecido'}`);
