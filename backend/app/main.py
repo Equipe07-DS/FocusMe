@@ -128,8 +128,8 @@ def gerar_cronograma(estudo: EstudoInput):
     Observações: {estudo.observacoes}
 
     Crie um cronograma personalizado com técnica Pomodoro (25min estudo + pausas),
-    distribuindo as disciplinas equilibradamente. Comece agora às {datetime.now().strftime('%H:%M')}.
-    Retorne apenas o cronograma formatado.
+    distribuindo as disciplinas equilibradamente.
+    Retorne apenas o cronograma formatado, sem comentários ou instruções adcionais.
     """
     resposta = gerar_resposta([{"role": "user", "content": mensagem}])
     return {"cronograma": resposta}
