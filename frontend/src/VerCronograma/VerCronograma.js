@@ -1,6 +1,7 @@
 import './VerCronograma.css';
 import Barra from '../componentes/Barra/Barra';
 import { useEffect, useState } from 'react';
+const API_URL = "https://back-fa7w.onrender.com";
 
 function VerCronograma() {
   const [cronogramaDias, setCronogramaDias] = useState({
