@@ -16,7 +16,7 @@ def gerar_resposta(messages):
             },
             model="google/gemini-2.0-flash-001",
             messages=messages,
-            max_tokens=1700
+            max_tokens=2500
         )
         return completion.choices[0].message.content
     except Exception as e:
