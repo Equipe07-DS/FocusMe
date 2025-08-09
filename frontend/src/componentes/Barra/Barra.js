@@ -4,7 +4,7 @@ import styles from './Barra.module.css';
 const Barra = () => {
     const navigate = useNavigate();
     const handleLogo = () => {
-        navigate('/TelaLogin');
+        navigate('/login');
     };
     
     return (
