@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './ChatInterface.module.css';
+const API_URL = "https://back-fa7w.onrender.com";
 
 const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
   const messageAreaRef = useRef(null);
