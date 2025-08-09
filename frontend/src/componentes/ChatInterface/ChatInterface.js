@@ -39,7 +39,6 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
     }
   }, [messages]);
 
-  // 🔁 Notifica o componente pai sempre que as mensagens mudam
   useEffect(() => {
     if (onMessagesChange) {
       onMessagesChange(messages);
@@ -60,7 +59,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
     setInputValue('');
 
     try {
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
