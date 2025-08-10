@@ -1,90 +1,90 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.App {
-  text-align: center;
-  background-color: #F6EDE8;
-  width: screen;
-  height: screen;
+.cronograma-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column; 
+  width: 100vw;
+  height: 100vh;
   align-items: center;
-
+  background-color: transparent; 
+  padding: 0rem; 
+  gap: 0.5rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.conteinerdias {
+    width: 57vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3vw;
+    row-gap: 2vh;
+    align-items: start;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Caixa-dia {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #F6EDE8;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 0.4s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Caixa-dia[open] {
+    background-color: #F6EDE8;
+    transition: all 0.4s;
 }
 
-.App-link {
-  color: #61dafb;
+.Caixa-dia:hover {
+    background-color: #F38763;
+    color: white;
+    transition: all 0.2s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Caixa-input {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-.Quadro-branco {
+.Título {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color:#004E7E;
+}
+
+.Quadro-cronograma {
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.Texto-cronograma {
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+}
+
+.Texto-cronograma li {
+  margin-bottom: 8px;
+}
+
+.Texto-cronograma p {
+  color: #667;
+}
+
+.quadro {
   background-color: #FFFCF7;
   width: 80vw;
-  height: 90vh;
+  height: 85vh;
   display: grid;
   grid-template-columns: min-content;
   justify-content: center;
   justify-items: center;
-  align-items: center;
   border-radius: 15px;
   margin-top: 2vh;
-}
-
-.Quadro-cronograma{
-  background-color: #F6EDE8;
-  width: 65vw;
-  height: 67vh;
-  border-radius: 15px;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  display: flex;
-  align-items: center;
+  padding: 3vh;
   overflow-y: scroll;
-
-
-}
-
-.Texto-cronograma {
-  max-height: 60vh;
-  max-width: 65vw;
-  font-size:xx-small;
-  margin: 0px;
-}
-
-.Título {
-  font-size: medium;
-  color: #004E7E;
-  margin: 0px;
-  margin-top: 2vh;
+  overflow-x: hidden;
 }
