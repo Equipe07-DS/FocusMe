@@ -1,22 +1,27 @@
-from fastapi import FastAPI, HTTPException, status, Depends
+import threading
+import time
+import schedule
+from fastapi import FastAPI, HTTPException, status, Depends, Query, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from datetime import datetime
+import json
+import re
 import unicodedata
-from fastapi import Query
 
+from database.database import baixar_banco, subir_banco, Base, engine, get_session
 from database.models import User, Cronograma
 from database.schemas import UserSchema
-from database.database import Base, engine, get_session
 from gerar import gerar_resposta
+from typing import Optional
 
-# ===== Inicialização =====
+# Inicializa app FastAPI
 app = FastAPI()
 
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # ajuste conforme seu domínio
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -24,7 +29,69 @@ app.add_middleware(
 
 Base.metadata.create_all(bind=engine)
 
-# ===== Modelos Pydantic =====
+def agendador():
+    schedule.every(5).minutes.do(subir_banco)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+
+@app.on_event("startup")
+async def startup_event():
+    baixar_banco()
+    thread = threading.Thread(target=agendador, daemon=True)
+    thread.start()
+
+def normalizar(texto):
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', texto.lower())
+        if unicodedata.category(c) != 'Mn'
+    )
+
+def obter_contexto_cronograma():
+    return (
+        "cronograma gerado>>\n"
+        "Segunda: <horario>: <atividade>\n" 
+        "Segunda: <horario>: <atividade>\n"
+        "Terça: <horario>: <atividade>\n"
+        "Terça: <horario>: <atividade>\n"
+        "Quarta: <horario>: <atividade>\n"
+        "Quarta: <horario>: <atividade>\n"
+    )
+
+def parse_cronograma_texto(texto):
+    dias = {
+        "segunda": [],
+        "terca": [],
+        "quarta": [],
+        "quinta": [],
+        "sexta": [],
+        "sabado": [],
+        "domingo": []
+    }
+
+    padrao = r"(?i)(segunda|terça|terca|quarta|quinta|sexta|sábado|sabado|domingo)\s*:\s*(\d{1,2}[:h]\d{2})\s*:\s*(.+)"
+    linhas = texto.strip().splitlines()
+
+    for linha in linhas:
+        match = re.match(padrao, linha.strip())
+        if match:
+            dia_raw, horario, descricao = match.groups()
+            dia = normalizar(dia_raw)
+            if dia == "terça":
+                dia = "terca"
+            if dia == "sábado":
+                dia = "sabado"
+            if dia in dias:
+                dias[dia].append({
+                    "horario": horario.strip(),
+                    "descricao": descricao.strip()
+                })
+
+    return dias
+
+
+
 class EstudoInput(BaseModel):
     segunda: str
     terca: str
@@ -48,42 +115,43 @@ class LoginInput(BaseModel):
 
 class CronogramaInput(BaseModel):
     nome: str
-    descricao: str
+    segunda: Optional[str] = None
+    terca: Optional[str] = None
+    quarta: Optional[str] = None
+    quinta: Optional[str] = None
+    sexta: Optional[str] = None
     user_id: int
 
+class ChatInput(BaseModel):
+    mensagem: str
+    cronograma_inicial: str
 
+# === ENDPOINTS ===
 
-def normalizar(texto):
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', texto.lower())
-        if unicodedata.category(c) != 'Mn'
-    )
-
-def obter_contexto_cronograma():
-    # Exemplo fixo de contexto
-    return (
-        "Cronograma atual:\n"
-        "Segunda: Matemática das 08:00 às 10:00\n"
-        "Terça: Português das 09:00 às 11:00\n"
-        "Quarta: Física das 08:00 às 10:00\n"
-        "Quinta: Química das 10:00 às 12:00\n"
-        "Sexta: História das 14:00 às 16:00\n"
-        "Sábado: Redação das 09:00 às 11:00\n"
-        "Domingo: Livre\n\n"
-    )
-
-# ===== Endpoints =====
 @app.get("/cronogramas/ultimo")
-def get_ultimo_cronograma(user_id: int = Query(...), db: Session = Depends(get_session)):
-    cronograma = db.query(Cronograma).filter(Cronograma.user_id == user_id).order_by(Cronograma.id.desc()).first()
+def get_ultimo_cronograma(user_id: int, db: Session = Depends(get_session)):
+    cronograma = (
+        db.query(Cronograma)
+        .filter(Cronograma.user_id == user_id)
+        .order_by(Cronograma.id.desc())
+        .first()
+    )
     if not cronograma:
-        raise HTTPException(status_code=404, detail="Nenhum cronograma encontrado")
-    return {
-        "id": cronograma.id,
-        "nome": cronograma.nome,
-        "descricao": cronograma.descricao 
-    }
+        raise HTTPException(status_code=404, detail="Nenhum cronograma encontrado.")
 
+    def carregar_json(campo):
+        try:
+            return json.loads(campo) if campo else []
+        except:
+            return []
+
+    return {
+        "Segunda-feira": carregar_json(cronograma.segunda),
+        "Terça-feira": carregar_json(cronograma.terca),
+        "Quarta-feira": carregar_json(cronograma.quarta),
+        "Quinta-feira": carregar_json(cronograma.quinta),
+        "Sexta-feira": carregar_json(cronograma.sexta),
+    }
 
 @app.post("/cadastro")
 def cadastro(info: UserInfo, db: Session = Depends(get_session)):
@@ -112,7 +180,7 @@ def login(info: LoginInput, db: Session = Depends(get_session)):
     return {"id": usuario.id, "email": usuario.email, "mensagem": "Login bem-sucedido"}
 
 @app.post("/gerar-cronograma")
-def gerar_cronograma(estudo: EstudoInput):
+def gerar_cronograma(estudo: EstudoInput, db: Session = Depends(get_session)):
     mensagem = f"""
     O usuário tem os seguintes horários disponíveis para estudar:
     Segunda: {estudo.segunda}
@@ -127,28 +195,60 @@ def gerar_cronograma(estudo: EstudoInput):
     Observações: {estudo.observacoes}
 
     Crie um cronograma personalizado com técnica Pomodoro (25min estudo + pausas),
-    distribuindo as disciplinas equilibradamente. Comece agora às {datetime.now().strftime('%H:%M')}.
-    Retorne apenas o cronograma formatado.
+    distribuindo as disciplinas equilibradamente.
+    Responda **somente** no formato a seguir:
+    {obter_contexto_cronograma()}
     """
     resposta = gerar_resposta([{"role": "user", "content": mensagem}])
-    return {"cronograma": resposta}
 
-@app.post("/salvar-cronograma")
-def salvar_cronograma(cronograma: CronogramaInput, db: Session = Depends(get_session)):
-    usuario = db.query(User).filter(User.id == cronograma.user_id).first()
-    if not usuario:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuário não encontrado")
+    dados = parse_cronograma_texto(resposta)
 
     novo_cronograma = Cronograma(
-        nome=cronograma.nome,
-        descricao=cronograma.descricao,
-        user_id=cronograma.user_id
+        nome="Cronograma gerado",
+        segunda=json.dumps(dados["segunda"], ensure_ascii=False),
+        terca=json.dumps(dados["terca"], ensure_ascii=False),
+        quarta=json.dumps(dados["quarta"], ensure_ascii=False),
+        quinta=json.dumps(dados["quinta"], ensure_ascii=False),
+        sexta=json.dumps(dados["sexta"], ensure_ascii=False),
+        user_id=1  
     )
     db.add(novo_cronograma)
     db.commit()
     db.refresh(novo_cronograma)
 
-    return {"id": novo_cronograma.id, "nome": novo_cronograma.nome, "mensagem": "Cronograma salvo com sucesso"}
+    return {"cronograma": resposta, "dados": dados}
+
+@app.post("/salvar-cronograma")
+def salvar_cronograma(cronograma: dict = Body(...), db: Session = Depends(get_session)):
+    user_id = cronograma.get("user_id")
+    nome = cronograma.get("nome", "Cronograma")
+    descricao = cronograma.get("descricao", "")
+
+    if not user_id or not descricao:
+        raise HTTPException(status_code=400, detail="Dados incompletos")
+
+    dados_dias = parse_cronograma_texto(descricao)
+
+    novo_cronograma = Cronograma(
+        nome=nome,
+        user_id=user_id,
+        segunda=json.dumps(dados_dias.get("segunda", []), ensure_ascii=False),
+        terca=json.dumps(dados_dias.get("terca", []), ensure_ascii=False),
+        quarta=json.dumps(dados_dias.get("quarta", []), ensure_ascii=False),
+        quinta=json.dumps(dados_dias.get("quinta", []), ensure_ascii=False),
+        sexta=json.dumps(dados_dias.get("sexta", []), ensure_ascii=False),
+    )
+
+    db.add(novo_cronograma)
+    db.commit()
+    db.refresh(novo_cronograma)
+
+    return {
+        "id": novo_cronograma.id,
+        "nome": novo_cronograma.nome,
+        "mensagem": "Cronograma salvo com sucesso",
+        "dados": dados_dias
+    }
 
 @app.get("/cronogramas/{user_id}")
 def listar_cronogramas(user_id: int, db: Session = Depends(get_session)):
@@ -157,30 +257,17 @@ def listar_cronogramas(user_id: int, db: Session = Depends(get_session)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Usuário não encontrado")
 
     cronogramas = db.query(Cronograma).filter(Cronograma.user_id == user_id).all()
-    return [{"id": c.id, "nome": c.nome, "descricao": c.descricao} for c in cronogramas]
-
-class ChatInput(BaseModel):
-    mensagem: str
-    cronograma_inicial: str  # Novo campo
-
-def normalizar(texto):
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', texto.lower())
-        if unicodedata.category(c) != 'Mn'
-    )
-
-
+    return [{"id": c.id, "nome": c.nome} for c in cronogramas]
 
 @app.post("/chat")
-def conversar(chat_input: ChatInput):
+def conversar(chat_input: ChatInput, db: Session = Depends(get_session)):
     mensagem = chat_input.mensagem
     cronograma = chat_input.cronograma_inicial or ""
     mensagem_normalizada = normalizar(mensagem)
 
     palavras_chave = [
         "cronograma", "horario", "disciplinas", "estudo", "pomodoro",
-        "segunda", "terca", "quarta", "quinta", "sexta", "sabado", "domingo",
-        "alterar", "modificar", "atualizar", "trocar", "ajustar"
+        "segunda", "terca", "quarta", "quinta", "sexta"
     ]
 
     if not any(p in mensagem_normalizada for p in palavras_chave):
@@ -189,12 +276,13 @@ def conversar(chat_input: ChatInput):
     mensagem_completa = (
         f"Cronograma atual:\n{cronograma.strip()}\n\n"
         f"Instrução: Modifique o cronograma acima aplicando exatamente as alterações solicitadas, "
-        f"substituindo disciplinas ou horários conforme indicado. Mantenha a técnica Pomodoro (25 minutos de estudo e pausas). "
-        f"Se a solicitação for vaga (ex.: apenas 'altere para Biologia'), substitua todas as disciplinas do cronograma por Biologia, "
-        f"mantendo os mesmos horários. Retorne apenas o cronograma atualizado, formatado claramente.\n\n"
+        f"mantendo a técnica Pomodoro (25min estudo + pausas). "
+        f"Responda **somente** no formato a seguir:\n"
+        f"{obter_contexto_cronograma()}\n\n"
         f"Solicitação do usuário: {mensagem}"
     )
 
     resposta_ia = gerar_resposta([{"role": "user", "content": mensagem_completa}])
-    return {"resposta": resposta_ia}
+    dados = parse_cronograma_texto(resposta_ia)
 
+    return {"resposta": resposta_ia, "dados": dados}

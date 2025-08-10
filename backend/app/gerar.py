@@ -3,7 +3,7 @@ import datetime
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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",
+    api_key="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",
 )
 
 def gerar_resposta(messages):
@@ -14,8 +14,7 @@ def gerar_resposta(messages):
                 "X-Title": "Assistente de Estudo",
             },
             model="google/gemini-2.0-flash-001",
-            messages=messages,
-            max_tokens=1500
+            messages=messages
         )
         return completion.choices[0].message.content
     except Exception as e:
