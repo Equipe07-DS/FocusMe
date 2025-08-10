@@ -7,7 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-DROPBOX_TOKEN = os.getenc("DROPBOX_T")  
+DROPBOX_TOKEN = os.getenv("DROPBOX_T")  
 DROPBOX_DB_PATH = "/focusdatabase.db"  
 LOCAL_DB_PATH = "./focusdatabase.db"   
 
