@@ -24,9 +24,6 @@ const Barra = () => {
                 <li className={`${styles.caixa_botoes}`}>
                     <Link to="/chat" className={`${styles.texto_botoes}`}>Chat</Link>
                 </li>
-                <li className={`${styles.caixa_botoes}`}>
-                    <Link to="/perfil" className={`${styles.texto_botoes}`}>Perfil</Link>
-                </li>
             </ul>
         </nav>
     )
