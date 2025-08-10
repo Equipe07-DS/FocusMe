@@ -1,7 +1,6 @@
 import './VerCronograma.css';
 import Barra from '../componentes/Barra/Barra';
 import { useEffect, useState } from 'react';
-const API_URL = "https://back-fa7w.onrender.com";
 
 function VerCronograma() {
   const [cronogramaDias, setCronogramaDias] = useState({
@@ -47,7 +46,7 @@ function VerCronograma() {
       }
 
       try {
-        const res = await fetch(`${API_URL}/cronogramas/ultimo?user_id=${user_id}`);
+        const res = await fetch(`http://localhost:8000/cronogramas/ultimo?user_id=${user_id}`);
         if (!res.ok) {
           if (res.status === 404) {
             setError('Nenhum cronograma encontrado. Crie um novo cronograma.');
@@ -155,6 +154,16 @@ function VerCronograma() {
           </div>
         </div>
       ))}
+      </div>
+      <div className='novocronograma'>
+        <p className="Texto-cronograma">Deseja criar um novo cronograma do zero?</p>
+        <p className="Texto-cronograma_aviso">Cuidado! Essa ação é irreversível e substituirá segu cronograma atual pelo novo.</p>
+        <button
+          className="Botao"
+          type="submit"
+        >
+        Criar novo cronograma
+        </button>
       </div>
       </div>
     </div>
