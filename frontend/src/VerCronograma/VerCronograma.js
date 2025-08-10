@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 const API_URL = "https://back-fa7w.onrender.com";
 
 function VerCronograma() {
+  const handleNovo = () => {
+        navigate('/novocronograma');
+  };
+
   const [cronogramaDias, setCronogramaDias] = useState({
     'Segunda-feira': [],
     'Terça-feira': [],
@@ -156,6 +160,13 @@ function VerCronograma() {
         </div>
       ))}
       </div>
+      <button
+          className="Botao"
+          type="submit"
+          onSubmit={handleNovo}
+        >
+        Criar novo cronograma
+        </button>
       </div>
     </div>
   );
