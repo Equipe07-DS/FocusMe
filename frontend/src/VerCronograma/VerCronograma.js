@@ -14,10 +14,6 @@ function VerCronograma() {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    const navigate = useNavigate();
-    const handleNovo = () => {
-      navigate('/novocronograma');
-    };
     const fetchUltimoCronograma = async () => {
       const user_id = localStorage.getItem('user_id');
       if (!user_id) {
