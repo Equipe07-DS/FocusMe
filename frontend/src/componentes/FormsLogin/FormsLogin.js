@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from './FormsLogin.module.css';
-const API_URL = "https://back-fa7w.onrender.com";
 
 const FormsLogin = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -11,7 +10,7 @@ const FormsLogin = () => {
 
   const onSubmit = async (data) => {
   try {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch("http://localhost:8000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +25,7 @@ const FormsLogin = () => {
       localStorage.setItem("user_id", respostaApi.id); // Salva o user_id no localStorage
 
       setLoginStatus("sucesso");
-      navigate('/novocronograma');
+      navigate('/inicio');
     } else {
       const errorData = await response.json();
       setLoginStatus(errorData.detail || "Erro ao logar.");
@@ -41,8 +40,6 @@ const FormsLogin = () => {
   const handleFazerCadastro = () => {
     navigate('/cadastro');
   };
-
-
 
   const email = watch('email');
   const senha = watch('senha');
@@ -83,7 +80,7 @@ const FormsLogin = () => {
               <label className={`${styles.LabelLogin}`}>Senha</label>
               <input
                 className={`${styles.InputsLogin}`}
-                type="password"
+                type="senha"
                 placeholder="Senha"
                 {...register('senha', { required: true })}
               />
@@ -94,7 +91,6 @@ const FormsLogin = () => {
                 className={`${styles.Botao} hover:opacity-70`}
                 type="submit"
                 disabled={!camposPreenchidos}
-              
               >
                 Entrar
               </button>
