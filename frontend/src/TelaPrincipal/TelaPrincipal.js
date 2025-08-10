@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from './TelaPrincipal.module.css';
 
-export default function TelaLoginn(){
+export default function TelaPrincipal(){
 
   return(
     <div className="fundo">
@@ -22,4 +22,18 @@ export default function TelaLoginn(){
                 </ul>
             </nav>
         </div>
-  </div>
+        <div className={`${styles.conteudo}`}>
+            <div>
+                <img src="/Logo-fundo-transparente.png" alt="Logo do FocusMe em fundo transparente" className="w:70vw h:auto"/>
+                <h2 className={`${styles.texto_subtitulo}`}>O seu cronograma de estudos personalizado que se ajusta à sua rotina!</h2>
+            </div>
+            <div className={`${styles.paragrafo}`}>
+                <p className={`${styles.texto_paragrafo}`}> Ainda não possui uma conta?</p>
+                <Link to="/cadastro" className={`${styles.texto_link}`}>Clique aqui</Link>
+                <p className={`${styles.texto_paragrafo}`}>para se cadastrar e ficar um passo mais perto de realizar suas metas!</p>
+            </div>
+        </div>
+    </div>
+  )
+
+}
