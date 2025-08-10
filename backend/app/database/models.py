@@ -18,7 +18,11 @@ class Cronograma(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String)
-    descricao = Column(String, nullable=True)
+    segunda = Column(String, nullable=True)
+    terca = Column(String, nullable = True)
+    quarta = Column(String, nullable=True)
+    quinta = Column(String, nullable=True)
+    sexta = Column(String, nullable= True)
 
     user_id = Column(Integer, ForeignKey("users.id"))
     usuario = relationship("User", back_populates="cronogramas")
