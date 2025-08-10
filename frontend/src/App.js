@@ -5,12 +5,13 @@ import VerCronograma from './VerCronograma/VerCronograma';
 import TelaCadastro from "./TelaCadastro/TelaCadastro";
 import TelaLogin from "./TelaLogin/TelaLogin";
 import TelaChat from "./TelaChat/TelaChat";
+import TelaPrincipal from "./TelaPrincipal/TelaPrincipal"
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<TelaLogin />} />
+                <Route path='/' element={<TelaPrincipal />} />
                 <Route path='/vercronograma' element={<VerCronograma />} />
                 <Route path='/novocronograma' element={<Novo />} />
                 <Route path='/cadastro' element={<TelaCadastro />} />
