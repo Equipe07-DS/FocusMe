@@ -5,6 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 const API_URL = "https://back-fa7w.onrender.com";
 
 function VerCronograma() {
+  const navigate = useNavigate();
+  const handleNovo = () => {
+      navigate('/novocronograma');
+  };
   const [cronogramaDias, setCronogramaDias] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
