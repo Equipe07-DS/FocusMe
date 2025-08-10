@@ -162,13 +162,17 @@ function VerCronograma() {
         </div>
       ))}
       </div>
-      <button
+      <div className='novocronograma'>
+        <p className="Texto-cronograma">Deseja criar um novo cronograma do zero?</p>
+        <p className="Texto-cronograma_aviso">Cuidado! Essa ação é irreversível e substituirá segu cronograma atual pelo novo.</p>
+        <button
           className="Botao"
           type="submit"
           onSubmit={handleNovo}
         >
         Criar novo cronograma
         </button>
+      </div>
       </div>
     </div>
   );
