@@ -6,6 +6,7 @@ import TelaCadastro from "./TelaCadastro/TelaCadastro";
 import TelaLogin from "./TelaLogin/TelaLogin";
 import TelaChat from "./TelaChat/TelaChat";
 import TelaPrincipal from "./TelaPrincipal/TelaPrincipal"
+import TelaInicial from "./TelaInicial/TelaInicial"
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path='/cadastro' element={<TelaCadastro />} />
                 <Route path='/login' element={<TelaLogin />} />
                 <Route path='/chat' element={<TelaChat />} />
+                <Route path='/inicio' element={<TelaInicial />} />
             </Routes>
         </BrowserRouter>
     );
