@@ -11,7 +11,7 @@ def gerar_resposta(messages):
     try:
         completion = client.chat.completions.create(
             extra_headers={
-                "HTTP-Referer": "http://localhost",
+                "HTTP-Referer": "https://front-ssjq.onrender.com",
                 "X-Title": "Assistente de Estudo",
             },
             model="google/gemini-2.0-flash-001",
