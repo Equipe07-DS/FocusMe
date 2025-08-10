@@ -5,44 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 const API_URL = "https://back-fa7w.onrender.com";
 
 function VerCronograma() {
-  const navigate = useNavigate();
-  const handleNovo = () => {
-      navigate('/novocronograma');
-  };
-
-  const [cronogramaDias, setCronogramaDias] = useState({
-    'Segunda-feira': [],
-    'Terça-feira': [],
-    'Quarta-feira': [],
-    'Quinta-feira': [],
-    'Sexta-feira': [],
-    'Sábado': [],
-    'Domingo': []
-  });
+  const [cronogramaDias, setCronogramaDias] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const normalizarDia = (dia) => {
-    const diasMap = {
-      'segunda': 'Segunda-feira',
-      'terça': 'Terça-feira',
-      'terca': 'Terça-feira',
-      'quarta': 'Quarta-feira',
-      'quinta': 'Quinta-feira',
-      'sexta': 'Sexta-feira',
-      'sabado': 'Sábado',
-      'sábado': 'Sábado',
-      'domingo': 'Domingo'
-    };
-
-    const chave = dia.toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, '')
-      .split('-')[0];
-
-    return diasMap[chave];
-  };
-
+  
   useEffect(() => {
     const fetchUltimoCronograma = async () => {
       const user_id = localStorage.getItem('user_id');
@@ -53,60 +19,19 @@ function VerCronograma() {
       }
 
       try {
-        const res = await fetch(`${API_URL}/cronogramas/ultimo?user_id=${user_id}`);
+        const res = await fetch(`http://localhost:8000/cronogramas/ultimo?user_id=${user_id}`);
         if (!res.ok) {
           if (res.status === 404) {
             setError('Nenhum cronograma encontrado. Crie um novo cronograma.');
           } else {
             throw new Error(`Erro HTTP: ${res.status} ${res.statusText}`);
           }
-        } else {
-          const data = await res.json();
-          console.log('Resposta completa da API:', data);
-
-          if (!data.descricao || data.descricao.trim() === '') {
-            setError('O cronograma está vazio. Crie um novo cronograma.');
-          } else {
-            const linhas = data.descricao
-              .split('\n')
-              .map(linha => linha.trim())
-              .filter(linha => linha);
-
-            const cronogramaOrganizado = {
-              'Segunda-feira': [],
-              'Terça-feira': [],
-              'Quarta-feira': [],
-              'Quinta-feira': [],
-              'Sexta-feira': [],
-              'Sábado': [],
-              'Domingo': []
-            };
-
-            let diaAtual = null;
-
-            linhas.forEach((linha, index) => {
-              const matchDia = linha.match(/^\*+\s*\**\s*([A-Za-zÀ-ú-]+)-?feira\s*:?/i);
-              if (matchDia) {
-                const diaNormalizado = normalizarDia(matchDia[1]);
-                if (cronogramaOrganizado[diaNormalizado]) {
-                  diaAtual = diaNormalizado;
-                }
-                return;
-              }
-
-              const matchTarefa = linha.match(/^\*+\s*(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2}):\s*(.+)$/);
-              if (matchTarefa && diaAtual) {
-                const [, inicio, fim, descricao] = matchTarefa;
-                const horario = `${inicio} - ${fim}`;
-                cronogramaOrganizado[diaAtual].push({ horario, descricao });
-              }
-            });
-
-            console.log('Cronograma organizado:', cronogramaOrganizado);
-            setCronogramaDias(cronogramaOrganizado);
-          }
+          setLoading(false);
+          return;
         }
 
+        const data = await res.json();
+        setCronogramaDias(data);
         setLoading(false);
       } catch (err) {
         console.error('Erro detalhado:', err.message);
@@ -150,8 +75,9 @@ function VerCronograma() {
               {tarefas.length > 0 ? (
                 <ul className="Texto-cronograma">
                   {tarefas.map((tarefa, index) => (
-                    <li key={index}>
-                      📌 {tarefa.horario}: {tarefa.descricao}
+                  <li key={`${dia}-${index}`}>
+                    {tarefa.horario && <>📌 {tarefa.horario}: </>}
+                    {tarefa.descricao}
                     </li>
                   ))}
                 </ul>
