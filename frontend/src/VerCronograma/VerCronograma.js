@@ -10,6 +10,10 @@ function VerCronograma() {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
+    const navigate = useNavigate();
+    const handleNovo = () => {
+      navigate('/novocronograma');
+    };
     const fetchUltimoCronograma = async () => {
       const user_id = localStorage.getItem('user_id');
       if (!user_id) {
@@ -94,7 +98,7 @@ function VerCronograma() {
         <button
           className="Botao"
           type="submit"
-          onSubmit={handleNovo}
+          onClick={handleNovo}
         >
         Criar novo cronograma
         </button>
