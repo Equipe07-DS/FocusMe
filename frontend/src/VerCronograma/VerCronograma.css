@@ -96,9 +96,8 @@
 }
 
 .Botao{
-  width: 30vw;
+  width: 20vw;
   border-radius: 10vh;
-  transition: all 0.25s;
   background-color: #ED5522;
   color: #FFFBF5;
   border: none;
@@ -106,6 +105,7 @@
   font-size: medium;
   font-weight: bold;
   height: 7vh;
+  justify-items: center;
 }
 
 .Botao:hover{
@@ -113,6 +113,8 @@
 }
 
 .novocronograma{
+  display: flex;
   justify-items: center;
   justify-content: center;
+  align-items:center;
 }
