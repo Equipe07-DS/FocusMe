@@ -79,4 +79,5 @@ Após preencher tudo, clique em **"Gerar Cronograma"**
 ### 6. Criando um Novo Cronograma
 
 Na mesma tela onde visualiza seu cronograma atual, você também pode clicar para **criar um novo cronograma** sempre que precisar.
+
 <img src="assets/image.png" height="400px">
