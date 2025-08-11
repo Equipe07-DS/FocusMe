@@ -9,11 +9,15 @@ function TelaChat() {
   const location = useLocation();
   const navigate = useNavigate();
   const { cronograma_output, estudoData } = location.state || {};
+  const [salvo, setSalvo] = useState(false);
+  const [todasAsMensagens, setTodasAsMensagens] = useState([]);
+
   if (!estudoData) {
-    alert("Dados do estudo não encontrados. Por favor, gere um cronograma antes.");
+    alert("Dados do estudo não encontrados.");
     navigate("/gerar");
     return null;
   }
+
 
 
   const [salvo, setSalvo] = useState(false);
