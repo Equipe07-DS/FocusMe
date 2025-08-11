@@ -1,5 +1,6 @@
 from openai import OpenAI
 import datetime
+import os
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
