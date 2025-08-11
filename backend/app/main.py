@@ -174,20 +174,20 @@ def gerar_cronograma(estudo: EstudoInput):
     13:55 - 14:00: Pausa
 
     Siga estritamente essa estrutura, sem mudá-la nunca:
-     ***segunda-feira***:
-     
-     ***terça-feira***:
-     
-     ***quarta-feira***:
-     
-     ***quinta-feira***:
-     
-     ***sexta-feira***:
-     
-     ***sábado***:
-     
-     ***domingo***:
+     Seu cronograma de estudos personalizado:
+     ***segunda***:
 
+     ***terça***:
+
+     ***quarta***:
+
+     ***quinta***:
+
+     ***sexta***:
+
+     ***sábado***:
+
+     ***domingo***:
 
     """
     resposta = gerar_resposta([{"role": "user", "content": mensagem}])
