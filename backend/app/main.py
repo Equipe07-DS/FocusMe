@@ -130,6 +130,7 @@ def gerar_cronograma(estudo: EstudoInput):
     Crie um cronograma personalizado distribuindo as disciplinas equilibradamente e incluindo pausas de 10 minutos entre os estudos.
     Retorne apenas o cronograma formatado, sem comentários ou instruções adcionais.
         Siga esse exemplo:
+    Seu cronograma de estudos personalizado
     ***segunda***:
     12:00 - 12:25: Matemática (Pomodoro 1)
     12:25 - 12:30: Pausa
