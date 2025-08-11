@@ -25,3 +25,59 @@ O FocusMe é um software que auxilia na organização da sua rotina de estudos c
 3. Pelo terminal entre na pasta do backend e instale as dependências do backend pelo comando  “pip install \-r requirements.txt”
 4. Em seguida, entre na pasta app e use o comando “uvicorn main:app  \--reload” (caso queira verificar se está tudo funcionando abra o navegador e coloque no endereço: “[http://localhost:8000/redoc](http://localhost:8000/redoc)”)
 5. Abra outro terminal e entre na pasta do frontend e use o comando “npm install” em seguida “npm start”
+
+
+# Tutorial de uso do FocusMe
+
+### 1. Acessando o FocusMe
+
+Ao entrar na nossa plataforma, você verá a **página inicial**, que contém:
+
+- Uma breve descrição do nosso software
+- Opções para **se cadastrar** (caso seja a primeira vez) ou **acessar sua conta**
+<img src="assets/image (6).png" height="400px">
+
+### 2. Criando uma Conta
+
+1. Clique em **"Cadastrar"**
+2. Preencha as informações solicitadas:
+    - **Nome**
+    - **E-mail**
+    - **Senha**
+<img src="assets/image (5).png" height="400px">
+
+3. Ao finalizar, você será redirecionado para a tela de **criar cronograma**
+
+### 3. Criando o seu Cronograma
+
+Na tela de criar cronograma, informe:
+
+- Sua **disponibilidade de horários**
+- As **matérias** que deseja estudar ao longo da semana
+- Detalhamentos para **cada dia da semana**, se existirem
+
+Após preencher tudo, clique em **"Gerar Cronograma"**
+<img src="assets/image (4).png" height="400px">
+
+### 4. Ajustando o seu Cronograma
+
+- Você será direcionado para a **tela de chat** com o nosso chatbot
+- Nessa tela você consegue:
+    - Visualizar o **cronograma inicial**
+    - Solicitar **alterações** ao chatbot até que fique como deseja
+<img src="assets/image (3).png" height="400px">
+
+### 5. Salvando e Visualizando o seu Cronograma
+
+1. Quando o cronograma estiver de acordo com o que deseja, clique em **"Salvar"** na tela de chat
+<img src="assets/image (2).png" height="400px">
+
+2. O cronograma ficará disponível na página **"Cronograma"**, onde:
+    - Suas atividades estarão divididas por dias da semana e por horário
+<img src="assets/image (1).png" height="400px">
+
+### 6. Criando um Novo Cronograma
+
+Na mesma tela onde visualiza seu cronograma atual, você também pode clicar para **criar um novo cronograma** sempre que precisar.
+
+<img src="assets/image.png" height="400px">
