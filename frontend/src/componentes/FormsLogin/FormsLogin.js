@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import styles from './FormsLogin.module.css';
-const API_URL = "https://back-fa7w.onrender.com";
+import styles from 'https://teste7-mng8.onrender.com';
 
 const FormsLogin = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -11,7 +10,7 @@ const FormsLogin = () => {
 
   const onSubmit = async (data) => {
   try {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch("${API_URL}/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,8 +40,6 @@ const FormsLogin = () => {
   const handleFazerCadastro = () => {
     navigate('/cadastro');
   };
-
-
 
   const email = watch('email');
   const senha = watch('senha');
@@ -94,7 +91,6 @@ const FormsLogin = () => {
                 className={`${styles.Botao} hover:opacity-70`}
                 type="submit"
                 disabled={!camposPreenchidos}
-              
               >
                 Entrar
               </button>
