@@ -12,7 +12,7 @@ const FormsCadastro = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("${API_URL}/cadastro", {
+      const response = await fetch(`${API_URL}/cadastro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
