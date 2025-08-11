@@ -126,27 +126,6 @@ class ChatInput(BaseModel):
     mensagem: str
     cronograma_inicial: str
 
-
-
-def normalizar(texto):
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', texto.lower())
-        if unicodedata.category(c) != 'Mn'
-    )
-
-def obter_contexto_cronograma():
-    # Exemplo fixo de contexto
-    return (
-        "Cronograma atual:\n"
-        "Segunda: Matemática das 08:00 às 10:00\n"
-        "Terça: Português das 09:00 às 11:00\n"
-        "Quarta: Física das 08:00 às 10:00\n"
-        "Quinta: Química das 10:00 às 12:00\n"
-        "Sexta: História das 14:00 às 16:00\n"
-        "Sábado: Redação das 09:00 às 11:00\n"
-        "Domingo: Livre\n\n"
-    )
-
 @app.get("/cronogramas/ultimo")
 def get_ultimo_cronograma(user_id: int, db: Session = Depends(get_session)):
     cronograma = (
