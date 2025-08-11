@@ -7,7 +7,7 @@ const API_URL = "https://back-fa7w.onrender.com";
 function VerCronograma() {
   const navigate = useNavigate();
   const handleNovo = () => {
-      navigate('/novocronograma');
+    navigate('/novocronograma');
   };
 
   const [cronogramaDias, setCronogramaDias] = useState({
@@ -22,6 +22,7 @@ function VerCronograma() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // A função normalizarDia foi aprimorada para ser mais robusta
   const normalizarDia = (dia) => {
     const diasMap = {
       'segunda': 'Segunda-feira',
@@ -35,10 +36,10 @@ function VerCronograma() {
       'domingo': 'Domingo'
     };
 
+    // Remove acentos e converte para minúsculas para encontrar a chave
     const chave = dia.toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, '')
-      .split('-')[0];
+      .replace(/[\u0300-\u036f]/g, '');
 
     return diasMap[chave];
   };
@@ -62,7 +63,6 @@ function VerCronograma() {
           }
         } else {
           const data = await res.json();
-          console.log('Resposta completa da API:', data);
 
           if (!data.descricao || data.descricao.trim() === '') {
             setError('O cronograma está vazio. Crie um novo cronograma.');
@@ -84,32 +84,35 @@ function VerCronograma() {
 
             let diaAtual = null;
 
-            linhas.forEach((linha, index) => {
+            linhas.forEach(linha => {
+              // Expressão regular aprimorada para capturar todos os dias
               const matchDia = linha.match(/^\*+\s*([A-Za-zÀ-ú]+)(?:-feira)?\*+\s*:/i);
+
               if (matchDia) {
-                const diaNormalizado = normalizarDia(matchDia[1]);
-                if (cronogramaOrganizado[diaNormalizado]) {
+                const nomeDia = matchDia[1]; // Ex: 'segunda', 'sábado'
+                const diaNormalizado = normalizarDia(nomeDia);
+                if (diaNormalizado) {
                   diaAtual = diaNormalizado;
                 }
-                return;
               }
 
-              const matchTarefa = linha.match(/^\*+\s*(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2}):\s*(.+)$/);
-              if (matchTarefa && diaAtual) {
-                const [, inicio, fim, descricao] = matchTarefa;
-                const horario = `${inicio} - ${fim}`;
-                cronogramaOrganizado[diaAtual].push({ horario, descricao });
+              // Se um dia já foi identificado, processa as tarefas
+              else if (diaAtual) {
+                const matchTarefa = linha.match(/^(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})\s*(.+)$/);
+                if (matchTarefa) {
+                  const [, inicio, fim, descricao] = matchTarefa;
+                  const horario = `${inicio} - ${fim}`;
+                  cronogramaOrganizado[diaAtual].push({ horario, descricao: descricao.trim() });
+                }
               }
             });
 
-            console.log('Cronograma organizado:', cronogramaOrganizado);
             setCronogramaDias(cronogramaOrganizado);
           }
         }
-
         setLoading(false);
       } catch (err) {
-        console.error('Erro detalhado:', err.message);
+        console.error('Erro ao carregar o cronograma:', err);
         setError(`Erro ao carregar o cronograma: ${err.message}`);
         setLoading(false);
       }
@@ -131,6 +134,13 @@ function VerCronograma() {
       <div className="cronograma-container">
         <h1 className="Título">Erro</h1>
         <p>{error}</p>
+        <button
+          className="Botao"
+          type="button"
+          onClick={handleNovo}
+        >
+          Criar novo cronograma
+        </button>
       </div>
     );
   }
@@ -139,40 +149,40 @@ function VerCronograma() {
     <div className="cronograma-container">
       <Barra></Barra>
       <div className='quadro'>
-      <div className="bg-[#004E7E] px-10 w-full flex flex-col items-center justify-center rounded-3xl mb-6 py-2">
+        <div className="bg-[#004E7E] px-10 w-full flex flex-col items-center justify-center rounded-3xl mb-6 py-2">
           <h1 className="text-white font-bold text-3xl align-top mb-2">Seu cronograma de estudos personalizado</h1>
         </div>
-      <div className='conteinerdias'>
-      {Object.entries(cronogramaDias).map(([dia, tarefas]) => (
-        <div key={dia} className="Caixa-dia">
-          <h2 className="Título">{dia}</h2>
-          <div className='Caixa-input'>
-              {tarefas.length > 0 ? (
-                <ul className="Texto-cronograma">
-                  {tarefas.map((tarefa, index) => (
-                    <li key={index}>
-                      📌 {tarefa.horario}: {tarefa.descricao}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="Texto-cronograma">Nenhuma tarefa para este dia.</p>
-              )}
-          </div>
+        <div className='conteinerdias'>
+          {Object.entries(cronogramaDias).map(([dia, tarefas]) => (
+            <div key={dia} className="Caixa-dia">
+              <h2 className="Título">{dia}</h2>
+              <div className='Caixa-input'>
+                {tarefas.length > 0 ? (
+                  <ul className="Texto-cronograma">
+                    {tarefas.map((tarefa, index) => (
+                      <li key={index}>
+                        📌 {tarefa.horario}: {tarefa.descricao}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="Texto-cronograma">Nenhuma tarefa para este dia.</p>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-      </div>
         <div className='novocronograma'>
-        <p className="Texto-cronograma">Deseja criar um novo cronograma do zero?</p>
-        <p className="Texto-cronograma_aviso">Cuidado! Essa ação é irreversível e substituirá segu cronograma atual pelo novo.</p>
-        <button
-          className="Botao"
-          type="submit"
-          onClick={handleNovo}
-        >
-        Criar novo cronograma
-        </button>
-      </div>
+          <p className="Texto-cronograma">Deseja criar um novo cronograma do zero?</p>
+          <p className="Texto-cronograma_aviso">Cuidado! Essa ação é irreversível e substituirá seu cronograma atual pelo novo.</p>
+          <button
+            className="Botao"
+            type="submit"
+            onClick={handleNovo}
+          >
+            Criar novo cronograma
+          </button>
+        </div>
       </div>
     </div>
   );
