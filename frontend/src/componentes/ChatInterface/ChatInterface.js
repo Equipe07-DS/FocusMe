@@ -62,7 +62,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
     setInputValue('');
 
     try {
-      const response = await fetch('${API_URL}/chat', {
+      const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
