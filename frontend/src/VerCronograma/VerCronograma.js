@@ -22,7 +22,6 @@ function VerCronograma() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // A função normalizarDia foi aprimorada para ser mais robusta
   const normalizarDia = (dia) => {
     const diasMap = {
       'segunda': 'Segunda-feira',
@@ -36,10 +35,10 @@ function VerCronograma() {
       'domingo': 'Domingo'
     };
 
-    // Remove acentos e converte para minúsculas para encontrar a chave
     const chave = dia.toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, '');
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim(); // Adicionando .trim() para remover espaços extras
 
     return diasMap[chave];
   };
@@ -89,7 +88,7 @@ function VerCronograma() {
               const matchDia = linha.match(/^\*+\s*([A-Za-zÀ-ú]+)(?:-feira)?\*+\s*:/i);
 
               if (matchDia) {
-                const nomeDia = matchDia[1]; // Ex: 'segunda', 'sábado'
+                const nomeDia = matchDia[1];
                 const diaNormalizado = normalizarDia(nomeDia);
                 if (diaNormalizado) {
                   diaAtual = diaNormalizado;
@@ -98,7 +97,8 @@ function VerCronograma() {
 
               // Se um dia já foi identificado, processa as tarefas
               else if (diaAtual) {
-                const matchTarefa = linha.match(/^(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})\s*(.+)$/);
+                // Expressão regular aprimorada para o novo formato de tarefa
+                const matchTarefa = linha.match(/^(\d{2}:\d{2})\s*-\s*(\d{2}:\d{2}):\s*(.+)$/);
                 if (matchTarefa) {
                   const [, inicio, fim, descricao] = matchTarefa;
                   const horario = `${inicio} - ${fim}`;
