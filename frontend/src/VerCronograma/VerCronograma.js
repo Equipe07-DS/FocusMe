@@ -85,7 +85,7 @@ function VerCronograma() {
             let diaAtual = null;
 
             linhas.forEach((linha, index) => {
-              const matchDia = linha.match(/^\*+\s*\**\s*([A-Za-zÀ-ú-]+)-?feira\s*:?/i);
+              const matchDia = linha.match(/^\*+\s*([A-Za-zÀ-ú]+)(?:-feira)?\*+\s*:/i);
               if (matchDia) {
                 const diaNormalizado = normalizarDia(matchDia[1]);
                 if (cronogramaOrganizado[diaNormalizado]) {
