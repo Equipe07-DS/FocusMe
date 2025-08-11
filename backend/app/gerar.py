@@ -3,7 +3,7 @@ import datetime
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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",
+    api_key=os.getenv("API_KEY")
 )
 
 def gerar_resposta(messages):
