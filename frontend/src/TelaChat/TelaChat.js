@@ -9,8 +9,10 @@ function TelaChat() {
   const location = useLocation();
   const navigate = useNavigate();
   const { cronograma_output, estudoData } = location.state || {};
+
   const [salvo, setSalvo] = useState(false);
   const [todasAsMensagens, setTodasAsMensagens] = useState([]);
+
   const salvarCronograma = async () => {
     const user_id = localStorage.getItem('user_id');
 
@@ -38,11 +40,9 @@ function TelaChat() {
       user_id: parseInt(user_id),
     };
 
-
     console.log('Enviando cronograma:', cronograma_data);
 
     try {
-      console.log("Dados enviados ao backend:", cronograma_data);
       const response = await fetch(`${API_URL}/salvar-cronograma`, {
         method: 'POST',
         headers: {
