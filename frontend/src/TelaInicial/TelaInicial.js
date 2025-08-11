@@ -17,10 +17,7 @@ export default function TelaInicial(){
                             <p className={`${styles.texto}`}> .Consultar seu cronograma semanal na aba cronograma. </p>
                             <p className={`${styles.texto}`}> .Pedir ao nosso assistente virtual para alterar seu cronograma na aba de chat. </p>
                             <p className={`${styles.texto}`}> Boa jornada de estudos!</p>
-                        <p className={`${styles.texto}`}>Atividades do dia:</p>
-                        <div className={`${styles.Quadro_dia}`}>
-                            <p className={`${styles.texto_dia}`}>==Cronograma do dia==</p>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
