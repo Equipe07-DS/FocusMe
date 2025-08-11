@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import style from './FormsNovoCronograma.module.css'
+const API_URL = "https://teste7-mng8.onrender.com";
 
 const FazerFormulario = () => {
   const { register, handleSubmit } = useForm();
@@ -25,7 +26,7 @@ const FazerFormulario = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8000/gerar-cronograma', {
+      const response = await fetch('${API_URL}/gerar-cronograma', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
