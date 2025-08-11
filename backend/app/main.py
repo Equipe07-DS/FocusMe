@@ -251,9 +251,9 @@ def conversar(chat_input: ChatInput):
     mensagem_completa = (
         f"Cronograma atual:\n{cronograma.strip()}\n\n"
         f"Instrução: Modifique o cronograma acima aplicando exatamente as alterações solicitadas, "
-        f"substituindo disciplinas ou horários conforme indicado. Mantenha a técnica Pomodoro (25 minutos de estudo e pausas). "
+        f"Mantenha as mesmas disciplinas do cronograma, mude apenas se for extritamente solicitado. Mantenha a técnica Pomodoro (25 minutos de estudo e pausas). "
         f"Se a solicitação for vaga (ex.: apenas 'altere para Biologia'), substitua todas as disciplinas do cronograma por Biologia, "
-        f"mantendo os mesmos horários. Retorne apenas o cronograma atualizado, formatado claramente.\n\n"
+        f"Mantendo os mesmos horários. Retorne apenas o cronograma atualizado, sem nenhuma observação, estritamente apenas o cronograma modificado formatado claramente.\n\n"
         f"Solicitação do usuário: {mensagem}"
     )
 
