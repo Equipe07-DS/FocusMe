@@ -1,6 +1,7 @@
 // src/componentes/ChatInterface/ChatInterface.js
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './ChatInterface.module.css';
+const API_URL = "https://back-fa7w.onrender.com";
 
 const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
   const messageAreaRef = useRef(null);
@@ -61,7 +62,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
     setInputValue('');
 
     try {
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch('${API_URL}/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
