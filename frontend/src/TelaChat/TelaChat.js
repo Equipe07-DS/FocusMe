@@ -20,8 +20,6 @@ function TelaChat() {
 
 
 
-  const [salvo, setSalvo] = useState(false);
-  const [todasAsMensagens, setTodasAsMensagens] = useState([]);
 
   const salvarCronograma = async () => {
     const user_id = localStorage.getItem('user_id');
