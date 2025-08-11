@@ -11,16 +11,6 @@ function TelaChat() {
   const { cronograma_output, estudoData } = location.state || {};
   const [salvo, setSalvo] = useState(false);
   const [todasAsMensagens, setTodasAsMensagens] = useState([]);
-
-  if (!estudoData) {
-    alert("Dados do estudo não encontrados.");
-    navigate("/gerar");
-    return null;
-  }
-
-
-
-
   const salvarCronograma = async () => {
     const user_id = localStorage.getItem('user_id');
 
@@ -35,12 +25,6 @@ function TelaChat() {
       navigate('/gerar');
       return;
     }
-
-    if (!ultimaMensagem || !ultimaMensagem.content.trim()) {
-      alert('Não há mensagem para salvar.');
-      return;
-    }
-
 
     // Seleciona apenas a última mensagem do array
     const ultimaMensagem = todasAsMensagens[todasAsMensagens.length - 1];
