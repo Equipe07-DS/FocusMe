@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import styles from './FormsCadastro.module.css';
+import styles from './FormsLogin.module.css';
 const API_URL = 'https://teste7-mng8.onrender.com';
 
 const FormsLogin = () => {
