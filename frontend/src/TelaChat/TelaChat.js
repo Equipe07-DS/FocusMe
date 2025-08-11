@@ -43,6 +43,7 @@ function TelaChat() {
     console.log('Enviando cronograma:', cronograma_data);
 
     try {
+      console.log("Dados enviados ao backend:", cronograma_data);
       const response = await fetch(`${API_URL}/salvar-cronograma`, {
         method: 'POST',
         headers: {
