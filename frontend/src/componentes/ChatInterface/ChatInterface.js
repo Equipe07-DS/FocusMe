@@ -3,52 +3,90 @@ import styles from './ChatInterface.module.css';
 const API_URL = "https://back-fa7w.onrender.com";
 
 const ChatInterface = ({ initialOutput, estudoData, onMessagesChange, onCronogramaUpdate }) => {
-  const [currentCronograma, setCurrentCronograma] = useState(initialOutput);
   const messageAreaRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
+  // Estado para gerenciar o cronograma atual.
+  const [currentCronograma, setCurrentCronograma] = useState(initialOutput);
 
+  // Sincroniza o estado interno com a prop, caso ela mude
+  // (por exemplo, ao carregar um novo cronograma salvo).
   useEffect(() => {
     setCurrentCronograma(initialOutput);
   }, [initialOutput]);
 
+
   const getInitialMessages = () => {
-    // ... (sua lógica de mensagens iniciais, pode ser ajustada)
     const messages = [];
-    // ... (restante do código)
-    if (initialOutput) {
-       messages.push({
-         role: 'assistant',
-         content: initialOutput, // Adiciona o cronograma inicial como uma mensagem
-         timestamp: new Date(),
-       });
+
+    messages.push({
+      role: 'assistant',
+      content: 'Olá! Sou o assistente do FocusMe. Como posso te ajudar a organizar seus estudos hoje?',
+      timestamp: new Date(),
+    });
+
+    if (initialOutput && estudoData) {
+      messages.push({
+        role: 'user',
+        content: `Ok, por favor, gere um cronograma para as seguintes matérias: ${estudoData.disciplinas}.`,
+        timestamp: new Date(),
+      });
+
+      messages.push({
+        role: 'assistant',
+        content: initialOutput,
+        timestamp: new Date(),
+      });
     }
+
     return messages;
   };
 
   const [messages, setMessages] = useState(getInitialMessages);
 
-  // ... (outros useEffects)
+  useEffect(() => {
+    if (messageAreaRef.current) {
+      messageAreaRef.current.scrollTop = messageAreaRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (onMessagesChange) {
+      onMessagesChange(messages);
+    }
+  }, [messages, onMessagesChange]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
-    // ... (criação da mensagem do usuário)
-    
+    // --- CORREÇÃO AQUI ---
+    // A variável 'userMessage' agora é declarada dentro da função,
+    // tornando-a acessível em todo o seu escopo.
+    const userMessage = {
+      role: 'user',
+      content: inputValue,
+      timestamp: new Date(),
+    };
+    // ----------------------
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+
     try {
       const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           mensagem: userMessage.content,
-          // O problema está aqui. Use o estado 'currentCronograma'
-          // que sempre terá o valor mais recente.
-          cronograma_inicial: currentCronograma || '',
+          // Agora, 'currentCronograma' é usado para a requisição
+          cronograma_inicial: currentCronograma || "",
         }),
       });
 
+      if (!response.ok) throw new Error('Erro ao consultar o servidor');
 
       const data = await response.json();
+
       const assistantMessage = {
         role: 'assistant',
         content: data.resposta,
@@ -58,13 +96,18 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange, onCronogra
       setMessages(prev => [...prev, assistantMessage]);
       setCurrentCronograma(data.resposta); // Atualiza o estado com o novo cronograma
       
-      // Se houver uma função para passar o cronograma para o pai, chame-a
       if (onCronogramaUpdate) {
         onCronogramaUpdate(data.resposta);
       }
-
     } catch (error) {
-      // ... (lógica de erro)
+      console.error('Erro ao enviar mensagem:', error);
+      const errorMessage = {
+        role: 'assistant',
+        content: 'Erro ao me comunicar com o servidor. Tente novamente mais tarde.',
+        timestamp: new Date(),
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
     }
   };
 
@@ -75,7 +118,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange, onCronogra
           const showDateSeparator =
             index === 0 ||
             new Date(messages[index - 1].timestamp).toDateString() !==
-              new Date(msg.timestamp).toDateString();
+            new Date(msg.timestamp).toDateString();
 
           return (
             <React.Fragment key={index}>
@@ -108,7 +151,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange, onCronogra
         />
         <button type="submit" className={styles.sendButton}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg">
             <path
               d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z"
               fill="white"
