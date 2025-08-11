@@ -286,3 +286,6 @@ def conversar(chat_input: ChatInput, db: Session = Depends(get_session)):
     dados = parse_cronograma_texto(resposta_ia)
 
     return {"resposta": resposta_ia, "dados": dados}
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "API está funcionando!"}
