@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.Quadro {
+  background-color: #FFFCF7;
+  width: 80vw;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: max-content;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 15px;
+  margin-top: 2vh;
+  padding: 3vh;
+}
+
+.conteudo {
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 0vh;
+}
+
+.titulo {
+  color: #004E7E;
+  font-weight: 800;
+  font-size: xx-large;
+  width: 25vw;
+}
+
+.texto {
+  color: black;
+  font-weight: 600;
+  font-size: large;
+  width: 47vw;
+}
+
+.texto_dia{
+  color: black;
+  font-weight: 400;
+  font-size: large;
+  width: 40vw;
+}
+.Quadro_dia {
+  display: block;
+  background-color: #F6EDE8;
+  width: 47vw;
+  height: 43vh;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 15px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  box-shadow: 2px 2px 7px #6f6b69;
+  overflow-y: scroll;
+}

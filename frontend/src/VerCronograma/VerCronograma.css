@@ -65,13 +65,19 @@
   margin: 0;
   padding: 0;
 }
+.Texto-cronograma_aviso{
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  color: red;
+}
 
 .Texto-cronograma li {
   margin-bottom: 8px;
 }
 
 .Texto-cronograma p {
-  color: #667;
+  color: #666;
 }
 
 .quadro {
@@ -87,4 +93,28 @@
   padding: 3vh;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.Botao{
+  width: 20vw;
+  border-radius: 10vh;
+  background-color: #ED5522;
+  color: #FFFBF5;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: bold;
+  height: 7vh;
+  justify-items: center;
+}
+
+.Botao:hover{
+  opacity: 70%;
+}
+
+.novocronograma{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items:center;
 }

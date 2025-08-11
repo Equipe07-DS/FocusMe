@@ -2,9 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './ChatInterface.module.css';
 const API_URL = "https://back-fa7w.onrender.com";
 
-const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
+const ChatInterface = ({ initialOutput, estudoData, onMessagesChange, onCronogramaUpdate }) => {
   const messageAreaRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
+  // Estado para gerenciar o cronograma atual.
+  const [currentCronograma, setCurrentCronograma] = useState(initialOutput);
+
+  // Sincroniza o estado interno com a prop, caso ela mude
+  // (por exemplo, ao carregar um novo cronograma salvo).
+  useEffect(() => {
+    setCurrentCronograma(initialOutput);
+  }, [initialOutput]);
+
 
   const getInitialMessages = () => {
     const messages = [];
@@ -50,11 +59,15 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
+    // --- CORREÇÃO AQUI ---
+    // A variável 'userMessage' agora é declarada dentro da função,
+    // tornando-a acessível em todo o seu escopo.
     const userMessage = {
       role: 'user',
       content: inputValue,
       timestamp: new Date(),
     };
+    // ----------------------
 
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
@@ -65,7 +78,8 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           mensagem: userMessage.content,
-          cronograma_inicial: initialOutput
+          // Agora, 'currentCronograma' é usado para a requisição
+          cronograma_inicial: currentCronograma || "",
         }),
       });
 
@@ -80,6 +94,11 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+      setCurrentCronograma(data.resposta); // Atualiza o estado com o novo cronograma
+      
+      if (onCronogramaUpdate) {
+        onCronogramaUpdate(data.resposta);
+      }
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
       const errorMessage = {
@@ -99,7 +118,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
           const showDateSeparator =
             index === 0 ||
             new Date(messages[index - 1].timestamp).toDateString() !==
-              new Date(msg.timestamp).toDateString();
+            new Date(msg.timestamp).toDateString();
 
           return (
             <React.Fragment key={index}>
@@ -132,7 +151,7 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
         />
         <button type="submit" className={styles.sendButton}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg">
             <path
               d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z"
               fill="white"

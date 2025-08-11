@@ -26,7 +26,7 @@ const FormsLogin = () => {
       localStorage.setItem("user_id", respostaApi.id); // Salva o user_id no localStorage
 
       setLoginStatus("sucesso");
-      navigate('/novocronograma');
+      navigate('/inicio');
     } else {
       const errorData = await response.json();
       setLoginStatus(errorData.detail || "Erro ao logar.");
