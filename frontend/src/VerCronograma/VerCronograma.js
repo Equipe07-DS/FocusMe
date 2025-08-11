@@ -1,5 +1,6 @@
 import './VerCronograma.css';
 import { useEffect, useState } from 'react';
+const API_URL = "https://teste7-mng8.onrender.com"
 
 function VerCronograma() {
   const [cronogramaDias, setCronogramaDias] = useState({});
@@ -16,7 +17,7 @@ function VerCronograma() {
       }
 
       try {
-        const res = await fetch(`http://localhost:8000/cronogramas/ultimo?user_id=${user_id}`);
+        const res = await fetch(`${API_URL}/cronogramas/ultimo?user_id=${user_id}`);
         if (!res.ok) {
           if (res.status === 404) {
             setError('Nenhum cronograma encontrado. Crie um novo cronograma.');
