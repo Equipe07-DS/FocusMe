@@ -254,6 +254,7 @@ def conversar(chat_input: ChatInput):
         f"Mantenha as mesmas disciplinas do cronograma, mude apenas se for extritamente solicitado. Mantenha a técnica Pomodoro (25 minutos de estudo e pausas). "
         f"Se a solicitação for vaga (ex.: apenas 'altere para Biologia'), substitua todas as disciplinas do cronograma por Biologia, "
         f"Mantendo os mesmos horários. Retorne apenas o cronograma atualizado, sem nenhuma observação, estritamente apenas o cronograma modificado formatado claramente.\n\n"
+        f"Retorne o cronograma com 'Seu cronograma de estudos personalizado:'\n a cima do cronograma"
         f"Solicitação do usuário: {mensagem}"
     )
 
