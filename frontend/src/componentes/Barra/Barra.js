@@ -4,7 +4,7 @@ import styles from './Barra.module.css';
 const Barra = () => {
     const navigate = useNavigate();
     const handleLogo = () => {
-        navigate('/login');
+        navigate('/TelaLogin');
     };
     
     return (
@@ -19,13 +19,16 @@ const Barra = () => {
                     <Link to="/inicio" className={`${styles.texto_botoes}`}>Inicio</Link>
                 </li>
                 <li className={`${styles.caixa_botoes}`}>
-                    <Link to="/vercronograma" className={`${styles.texto_botoes}`}>Cronograma</Link>
+                    <Link to="/novocronograma" className={`${styles.texto_botoes}`}>Cronograma</Link>
                 </li>
                 <li className={`${styles.caixa_botoes}`}>
                     <Link to="/chat" className={`${styles.texto_botoes}`}>Chat</Link>
                 </li>
                 <li className={`${styles.caixa_botoes}`}>
                     <Link to="/perfil" className={`${styles.texto_botoes}`}>Perfil</Link>
+                </li>
+                <li className={`${styles.caixa_botoes}`}>
+                    <Link to="/vercronograma" className={`${styles.texto_botoes}`}>Ver Cronograma</Link>
                 </li>
             </ul>
         </nav>
