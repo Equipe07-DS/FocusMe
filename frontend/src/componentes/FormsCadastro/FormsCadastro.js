@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from './FormsCadastro.module.css';
-const API_URL = "https://back-fa7w.onrender.com";
+const API_URL = "https://teste7-mng8.onrender.com"
 
 const FormsCadastro = () => {
 
@@ -12,7 +12,7 @@ const FormsCadastro = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`${API_URL}/cadastro`, {
+      const response = await fetch("${API_URL}/cadastro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,8 +22,7 @@ const FormsCadastro = () => {
 
       if (response.ok) {
         const respostaApi = await response.json();
-        setcadastro(respostaApi.cadastro);
-        navigate('/novocronograma');
+        setcadastro(respostaApi.cadastro); 
       } else {
         console.error('Erro ao enviar dados para o backend');
       }
@@ -35,8 +34,6 @@ const FormsCadastro = () => {
   const handleFazerLogin = () => {
     navigate('/login');
   };
-
-
   
   return (
 
@@ -109,6 +106,19 @@ const FormsCadastro = () => {
       </div>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   );
 };
