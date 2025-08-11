@@ -21,16 +21,18 @@ const FormsCadastro = () => {
       });
 
       if (response.ok) {
-        const respostaApi = await response.json();
-        setcadastro(respostaApi.cadastro);
-        navigate('/novocronograma');
-      } else {
-        console.error('Erro ao enviar dados para o backend');
-      }
+            const respostaApi = await response.json();
+            // Salva o ID do usuário no localStorage
+            localStorage.setItem('user_id', respostaApi.id);
+            setcadastro(respostaApi.cadastro);
+            navigate('/novocronograma');
+        } else {
+            console.error('Erro ao enviar dados para o backend');
+        }
     } catch (error) {
-      console.error('Erro na requisição:', error);
+        console.error('Erro na requisição:', error);
     }
-  };
+};
 
   const handleFazerLogin = () => {
     navigate('/login');
