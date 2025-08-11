@@ -249,12 +249,14 @@ def conversar(chat_input: ChatInput):
         return {"resposta": "Eu não sou feito para responder isso."}
 
     mensagem_completa = (
-        f"Cronograma atual:\n{cronograma.strip()}\n\n"
-        f"Instrução: Modifique o cronograma acima aplicando exatamente as alterações solicitadas, "
-        f"Mantenha as mesmas disciplinas do cronograma, mude apenas se for extritamente solicitado. Mantenha a técnica Pomodoro (25 minutos de estudo e pausas). "
-        f"Se a solicitação for vaga (ex.: apenas 'altere para Biologia'), substitua todas as disciplinas do cronograma por Biologia, "
-        f"Mantendo os mesmos horários. Retorne apenas o cronograma atualizado, sem nenhuma observação, estritamente apenas o cronograma modificado formatado claramente.\n\n"
-        f"Retorne o cronograma com 'Seu cronograma de estudos personalizado:'\n a cima do cronograma"
+        f"Você é um assistente que ajuda a gerenciar cronogramas de estudo. "
+        f"O cronograma atual do usuário é:\n{cronograma.strip()}\n\n"
+        f"Instrução: Analise a solicitação do usuário abaixo e aplique as alterações no cronograma atual. "
+        f"Não adicione nem remova disciplinas ou horários que não foram explicitamente solicitados. "
+        f"Mantenha o formato de pomodoro (25 minutos de estudo, 5 de pausa). "
+        f"Se for solicitado uma troca de disciplina, substitua a disciplina existente pela nova. "
+        f"Retorne apenas o cronograma atualizado, sem nenhum texto adicional. "
+        f"Comece o cronograma com a linha 'Seu cronograma de estudos personalizado:'.\n\n"
         f"Solicitação do usuário: {mensagem}"
     )
 
