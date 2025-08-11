@@ -98,4 +98,90 @@ function VerCronograma() {
                                 if (matchTarefa) {
                                     const [, inicio, fim, descricao] = matchTarefa;
                                     const horario = `${inicio} - ${fim}`;
-                                    cronogramaOrganizado[diaAtual
+                                    cronogramaOrganizado[diaAtual].push({ horario, descricao: descricao.trim() });
+                                }
+                            }
+                        });
+
+                        setCronogramaDias(cronogramaOrganizado);
+                    }
+                }
+                setLoading(false);
+            } catch (err) {
+                console.error('Erro ao carregar o cronograma:', err);
+                setError(`Erro ao carregar o cronograma: ${err.message}`);
+                setLoading(false);
+            }
+        };
+
+        fetchUltimoCronograma();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="cronograma-container">
+                <h1 className="Título">Carregando...</h1>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="cronograma-container">
+                <h1 className="Título">Erro</h1>
+                <p>{error}</p>
+                <button
+                    className="Botao"
+                    type="button"
+                    onClick={handleNovo}
+                >
+                    Criar novo cronograma
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <div className="cronograma-container">
+            <Barra></Barra>
+            <div className='quadro'>
+                <div className="bg-[#004E7E] px-10 w-full flex flex-col items-center justify-center rounded-3xl mb-6 py-2">
+                    <h1 className="text-white font-bold text-3xl align-top mb-2">Seu cronograma de estudos personalizado</h1>
+                </div>
+                <div className='conteinerdias'>
+                    {Object.entries(cronogramaDias).map(([dia, tarefas]) => (
+                        <div key={dia} className="Caixa-dia">
+                            <h2 className="Título">{dia}</h2>
+                            <div className='Caixa-input'>
+                                {tarefas.length > 0 ? (
+                                    <ul className="Texto-cronograma">
+                                        {tarefas.map((tarefa, index) => (
+                                            <li key={index}>
+                                                📌 {tarefa.horario}: {tarefa.descricao}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p className="Texto-cronograma">Nenhuma tarefa para este dia.</p>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className='novocronograma'>
+                    <p className="Texto-cronograma">Deseja criar um novo cronograma do zero?</p>
+                    <p className="Texto-cronograma_aviso">Cuidado! Essa ação é irreversível e substituirá seu cronograma atual pelo novo.</p>
+                    <button
+                        className="Botao"
+                        type="submit"
+                        onClick={handleNovo}
+                    >
+                        Criar novo cronograma
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default VerCronograma;
