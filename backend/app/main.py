@@ -101,9 +101,9 @@ def cadastro(info: UserInfo, db: Session = Depends(get_session)):
     db.add(novo_usuario)
     db.commit()
     db.refresh(novo_usuario)
-
-    return {"email": novo_usuario.email, "mensagem": "Cadastro bem-sucedido"}
-
+    # Retorna o ID do novo usuário criado
+    return {"id": novo_usuario.id, "email": novo_usuario.email, "mensagem": "Cadastro bem-sucedido"}
+    
 @app.post("/login")
 def login(info: LoginInput, db: Session = Depends(get_session)):
     usuario = db.query(User).filter(User.email == info.email).first()
