@@ -129,46 +129,63 @@ def gerar_cronograma(estudo: EstudoInput):
 
     Crie um cronograma personalizado distribuindo as disciplinas equilibradamente e incluindo pausas de 10 minutos entre os estudos.
     Retorne apenas o cronograma formatado, sem comentários ou instruções adcionais.
-    Siga estritamente essa estrutura, sem mudá-la nunca:
-     ***segunda***:
-     ***terça***:
-     ***quarta***:
-     ***quinta***:
-     ***sexta***:
-     ***sábado***:
-     ***domingo***:Crie um cronograma personalizado distribuindo as disciplinas equilibradamente e incluindo pausas de 10 minutos entre os estudos.
-    Retorne apenas o cronograma formatado, sem comentários ou instruções adicionais.
-    Siga esse exemplo:
+        Siga esse exemplo:
     ***segunda***:
-    12:00 - 13:20: Matemática
-    13:30 - 14:50: Cálculo
+    12:00 - 12:25: Matemática (Pomodoro 1)
+    12:25 - 12:30: Pausa
+    12:30 - 12:55: Cálculo (Pomodoro 2)
+    12:55 - 13:00: Pausa
+    
     ***terça***:
-    12:00 - 13:20: Cálculo
-    13:30 - 14:50: Matemática
+    14:00 - 14:25: Matemática (Pomodoro 1)
+    14:25 - 14:30: Pausa
+    14:30 - 14:55: Cálculo (Pomodoro 2)
+    14:55 - 15:00: Pausa
+    15:00 - 15:25: Cálculo (Pomodoro 3)
+    
     ***quarta***:
-    12:00 - 13:20: Matemática
-    13:30 - 14:50: Cálculo
+    12:00 - 12:25: Matemática (Pomodoro 1)
+    12:25 - 12:30: Pausa
+    12:30 - 12:55: Cálculo (Pomodoro 2)
+    12:55 - 13:00: Pausa
+    
     ***quinta***:
-    12:00 - 13:20: Cálculo
-    13:30 - 14:50: Matemática
+    12:00 - 12:25: Matemática (Pomodoro 1)
+    12:25 - 12:30: Pausa
+    12:30 - 12:55: Cálculo (Pomodoro 2)
+    12:55 - 13:00: Pausa
+    
     ***sexta***:
-    12:00 - 13:20: Matemática
-    13:30 - 14:50: Cálculo
+    12:00 - 12:25: Matemática (Pomodoro 1)
+    12:25 - 12:30: Pausa
+    12:30 - 12:55: Cálculo (Pomodoro 2)
+    12:55 - 13:00: Pausa
+    
     ***sábado***:
-    10:00 - 11:20: Cálculo
-    11:30 - 12:50: Matemática
-    13:00 - 14:50: Revisão Geral
+    14:00 - 14:25: Matemática (Pomodoro 1)
+    14:25 - 14:30: Pausa
+    14:30 - 14:55: Cálculo (Pomodoro 2)
+    14:55 - 15:00: Pausa
+    
     ***domingo***:
-    12:00 - 13:20: Matemática
-    13:30 - 14:50: Cálculo
+    13:00 - 13:25: Matemática (Pomodoro 1)
+    13:25 - 13:30: Pausa
+    13:30 - 13:55: Cálculo (Pomodoro 2)
+    13:55 - 14:00: Pausa
 
     Siga estritamente essa estrutura, sem mudá-la nunca:
      ***segunda-feira***:
+     
      ***terça-feira***:
+     
      ***quarta-feira***:
+     
      ***quinta-feira***:
+     
      ***sexta-feira***:
+     
      ***sábado***:
+     
      ***domingo***:
 
 
