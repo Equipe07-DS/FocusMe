@@ -2,77 +2,53 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './ChatInterface.module.css';
 const API_URL = "https://back-fa7w.onrender.com";
 
-const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
+const ChatInterface = ({ initialOutput, estudoData, onMessagesChange, onCronogramaUpdate }) => {
+  const [currentCronograma, setCurrentCronograma] = useState(initialOutput);
   const messageAreaRef = useRef(null);
   const [inputValue, setInputValue] = useState('');
 
+  useEffect(() => {
+    setCurrentCronograma(initialOutput);
+  }, [initialOutput]);
+
   const getInitialMessages = () => {
+    // ... (sua lógica de mensagens iniciais, pode ser ajustada)
     const messages = [];
-
-    messages.push({
-      role: 'assistant',
-      content: 'Olá! Sou o assistente do FocusMe. Como posso te ajudar a organizar seus estudos hoje?',
-      timestamp: new Date(),
-    });
-
-    if (initialOutput && estudoData) {
-      messages.push({
-        role: 'user',
-        content: `Ok, por favor, gere um cronograma para as seguintes matérias: ${estudoData.disciplinas}.`,
-        timestamp: new Date(),
-      });
-
-      messages.push({
-        role: 'assistant',
-        content: initialOutput,
-        timestamp: new Date(),
-      });
+    // ... (restante do código)
+    if (initialOutput) {
+       messages.push({
+         role: 'assistant',
+         content: initialOutput, // Adiciona o cronograma inicial como uma mensagem
+         timestamp: new Date(),
+       });
     }
-
     return messages;
   };
 
   const [messages, setMessages] = useState(getInitialMessages);
 
-  useEffect(() => {
-    if (messageAreaRef.current) {
-      messageAreaRef.current.scrollTop = messageAreaRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  useEffect(() => {
-    if (onMessagesChange) {
-      onMessagesChange(messages);
-    }
-  }, [messages, onMessagesChange]);
+  // ... (outros useEffects)
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
-    const userMessage = {
-      role: 'user',
-      content: inputValue,
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
-
+    // ... (criação da mensagem do usuário)
+    
     try {
       const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           mensagem: userMessage.content,
-          cronograma_inicial: initialOutput
+          // O problema está aqui. Use o estado 'currentCronograma'
+          // que sempre terá o valor mais recente.
+          cronograma_inicial: currentCronograma || '',
         }),
       });
 
-      if (!response.ok) throw new Error('Erro ao consultar o servidor');
 
       const data = await response.json();
-
       const assistantMessage = {
         role: 'assistant',
         content: data.resposta,
@@ -80,15 +56,15 @@ const ChatInterface = ({ initialOutput, estudoData, onMessagesChange }) => {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
-      console.error('Erro ao enviar mensagem:', error);
-      const errorMessage = {
-        role: 'assistant',
-        content: 'Erro ao me comunicar com o servidor. Tente novamente mais tarde.',
-        timestamp: new Date(),
-      };
+      setCurrentCronograma(data.resposta); // Atualiza o estado com o novo cronograma
+      
+      // Se houver uma função para passar o cronograma para o pai, chame-a
+      if (onCronogramaUpdate) {
+        onCronogramaUpdate(data.resposta);
+      }
 
-      setMessages(prev => [...prev, errorMessage]);
+    } catch (error) {
+      // ... (lógica de erro)
     }
   };
 
