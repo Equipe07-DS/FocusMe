@@ -136,7 +136,41 @@ def gerar_cronograma(estudo: EstudoInput):
      ***quinta***:
      ***sexta***:
      ***sábado***:
+     ***domingo***:Crie um cronograma personalizado distribuindo as disciplinas equilibradamente e incluindo pausas de 10 minutos entre os estudos.
+    Retorne apenas o cronograma formatado, sem comentários ou instruções adicionais.
+    Siga esse exemplo:
+    ***segunda***:
+    12:00 - 13:20: Matemática
+    13:30 - 14:50: Cálculo
+    ***terça***:
+    12:00 - 13:20: Cálculo
+    13:30 - 14:50: Matemática
+    ***quarta***:
+    12:00 - 13:20: Matemática
+    13:30 - 14:50: Cálculo
+    ***quinta***:
+    12:00 - 13:20: Cálculo
+    13:30 - 14:50: Matemática
+    ***sexta***:
+    12:00 - 13:20: Matemática
+    13:30 - 14:50: Cálculo
+    ***sábado***:
+    10:00 - 11:20: Cálculo
+    11:30 - 12:50: Matemática
+    13:00 - 14:50: Revisão Geral
+    ***domingo***:
+    12:00 - 13:20: Matemática
+    13:30 - 14:50: Cálculo
+
+    Siga estritamente essa estrutura, sem mudá-la nunca:
+     ***segunda-feira***:
+     ***terça-feira***:
+     ***quarta-feira***:
+     ***quinta-feira***:
+     ***sexta-feira***:
+     ***sábado***:
      ***domingo***:
+
 
     """
     resposta = gerar_resposta([{"role": "user", "content": mensagem}])
