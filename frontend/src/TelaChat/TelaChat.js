@@ -3,7 +3,7 @@ import ChatInterface from '../componentes/ChatInterface/ChatInterface';
 import styles from './TelaChat.module.css';
 import Barra from '../componentes/Barra/Barra';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-const API_URL = "https://back-fa7w.onrender.com";
+const API_URL = "https://teste7-mng8.onrender.com";
 
 function TelaChat() {
   const location = useLocation();
@@ -43,7 +43,7 @@ function TelaChat() {
     console.log('Enviando cronograma:', cronograma_data);
 
     try {
-      const response = await fetch(`${API_URL}/salvar-cronograma`, {
+      const response = await fetch('${API_URL}/salvar-cronograma', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ function TelaChat() {
       if (response.ok) {
         const data = await response.json();
         setSalvo(true);
-        alert(`Cronograma salvo com sucesso! Você pode vê-lo na aba de cronograma. ID: ${data.id}`);
+        alert(`Cronograma salvo com sucesso! ID: ${data.id}`);
       } else {
         const erro = await response.json();
         alert(`Erro ao salvar: ${erro.detail || 'Erro desconhecido'}`);
