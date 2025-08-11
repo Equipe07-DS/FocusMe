@@ -132,7 +132,7 @@ def get_ultimo_cronograma(user_id: int, db: Session = Depends(get_session)):
         db.query(Cronograma)
         .filter(Cronograma.user_id == user_id)
         .order_by(Cronograma.id.desc())
-        .ofset(9)
+        .offset(10)
         .first()
     )
     if not cronograma:
