@@ -38,7 +38,13 @@ function TelaChat() {
       nome: `Cronograma - ${estudoData.disciplinas || 'Estudo'}`,
       descricao: textoCompleto,
       user_id: parseInt(user_id),
+      segunda: JSON.stringify(cronograma_output["Segunda-feira"] || []),
+      terca: JSON.stringify(cronograma_output["Terça-feira"] || []),
+      quarta: JSON.stringify(cronograma_output["Quarta-feira"] || []),
+      quinta: JSON.stringify(cronograma_output["Quinta-feira"] || []),
+      sexta: JSON.stringify(cronograma_output["Sexta-feira"] || []),
     };
+
 
     console.log('Enviando cronograma:', cronograma_data);
 
