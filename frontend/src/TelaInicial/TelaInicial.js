@@ -16,6 +16,7 @@ export default function TelaInicial(){
                             <p className={`${styles.texto}`}>  Aqui você pode: </p>
                             <p className={`${styles.texto}`}> .Consultar seu cronograma semanal na aba cronograma. </p>
                             <p className={`${styles.texto}`}> .Pedir ao nosso assistente virtual para alterar seu cronograma na aba de chat. </p>
+                            <p className={`${styles.texto}`}> Por exemplo: pedir para alterar matérias ou horários, colocarmais vezes uma matéria em uma dia. </p>
                             <p className={`${styles.texto}`}> Boa jornada de estudos!</p>
                     
                     </div>
