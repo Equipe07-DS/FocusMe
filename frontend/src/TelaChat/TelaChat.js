@@ -9,6 +9,12 @@ function TelaChat() {
   const location = useLocation();
   const navigate = useNavigate();
   const { cronograma_output, estudoData } = location.state || {};
+  if (!estudoData) {
+    alert("Dados do estudo não encontrados. Por favor, gere um cronograma antes.");
+    navigate("/gerar");
+    return null;
+  }
+
 
   const [salvo, setSalvo] = useState(false);
   const [todasAsMensagens, setTodasAsMensagens] = useState([]);
@@ -28,6 +34,12 @@ function TelaChat() {
       return;
     }
 
+    if (!ultimaMensagem || !ultimaMensagem.content.trim()) {
+      alert('Não há mensagem para salvar.');
+      return;
+    }
+
+
     // Seleciona apenas a última mensagem do array
     const ultimaMensagem = todasAsMensagens[todasAsMensagens.length - 1];
     const textoCompleto = ultimaMensagem
@@ -44,6 +56,7 @@ function TelaChat() {
     console.log('Enviando cronograma:', cronograma_data);
 
     try {
+      console.log("Dados enviados ao backend:", cronograma_data);
       const response = await fetch(`${API_URL}/salvar-cronograma`, {
         method: 'POST',
         headers: {
